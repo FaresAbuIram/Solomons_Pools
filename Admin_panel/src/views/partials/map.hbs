@@ -1,0 +1,21 @@
+<div class="map" id="map"></div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZmFyaXNhYnUzcnJhbSIsImEiOiJja2g5amhubnIwdXV4MnhucWI5cWsyYnh4In0.9yGExLwa7ctqJAtqxTIZBA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        zoom: 16,
+        center: [35.16793370246888, 31.689010739990746],
+        style: 'mapbox://styles/farisabu3rram/ckhay9fye02vd19pjcxs5bl3k'
+    });
+    var marker = new mapboxgl.Marker()
+        .setLngLat([35.16793370246888, 31.689010739990746])
+        .addTo(map);
+
+    map.on('click', function (e) {
+        marker.remove()
+        latlng =e.lngLat.wrap();
+         marker = new mapboxgl.Marker()
+        .setLngLat([latlng.lng, latlng.lat])
+        .addTo(map);
+    });
+</script>

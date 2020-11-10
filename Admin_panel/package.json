@@ -1,0 +1,32 @@
+{
+  "name": "solomons_pools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "google-static-maps-styler-query": "^4.0.0",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.13",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7",
+    "static-google-map": "0.0.3",
+    "staticmaps": "^1.4.2"
+  }
+}

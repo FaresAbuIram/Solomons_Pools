@@ -1,0 +1,45 @@
+.login-page {
+  background: linear-gradient(180deg, #000, $login-background);
+  &.root {
+    height: 100%;
+  }
+  .centered-div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .white-panel {
+    background: white;
+    padding: 60px 50px;
+    border-radius: 10px;
+    .row > div:first-child {
+        border-right: 1px solid $login-border-clr;
+        margin-top: 20px;
+    }
+  }
+  p {
+    color: $login-sign-words;
+  }
+  .login-word {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  form {
+    button {
+      width: 100px;
+      height: 40px;
+      background: $login-button;
+      &:active,
+      &:hover {
+        background: darken($login-button, 10%);
+      }
+    }
+  }
+}
+.logo-img {
+    max-width: 100%;
+  }

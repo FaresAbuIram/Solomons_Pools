@@ -1,0 +1,126 @@
+.pseu-tabs {
+  border: none !important;
+}
+
+.pseu-tabs .nav-tabs .nav-link.active, .pseu-tabs .tab-content {
+  border: 0px solid transparent;
+}
+
+.pseu-tabs .nav-tabs {
+  background: #ebedef;
+}
+
+.header-2 {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(60, 75, 100, 0.14), 0 3px 1px -2px rgba(60, 75, 100, 0.12), 0 1px 5px 0 rgba(60, 75, 100, 0.2);
+          box-shadow: 0 2px 2px 0 rgba(60, 75, 100, 0.14), 0 3px 1px -2px rgba(60, 75, 100, 0.12), 0 1px 5px 0 rgba(60, 75, 100, 0.2);
+  min-height: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px !important;
+}
+
+.c-header-toggler {
+  outline: none !important;
+}
+
+.panel {
+  padding: 20px;
+  background: white;
+  -webkit-box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+}
+
+.login-page {
+  background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#084b77));
+  background: linear-gradient(180deg, #000, #084b77);
+}
+
+.login-page.root {
+  height: 100%;
+}
+
+.login-page .centered-div {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-page .white-panel {
+  background: white;
+  padding: 60px 50px;
+  border-radius: 10px;
+}
+
+.login-page .white-panel .row > div:first-child {
+  border-right: 1px solid #707070;
+  margin-top: 20px;
+}
+
+.login-page p {
+  color: #8791a0;
+}
+
+.login-page .login-word {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.login-page form button {
+  width: 100px;
+  height: 40px;
+  background: #3b4a62;
+}
+
+.login-page form button:active, .login-page form button:hover {
+  background: #283242;
+}
+
+.logo-img {
+  max-width: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .login-page .white-panel .row > div:first-child {
+    border-right: none;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+.browse-button {
+  color: white !important;
+  display: inline;
+  margin-right: 10px;
+}
+
+.browse-button i {
+  margin-left: 5px;
+}
+
+.core-container {
+  padding: 20px;
+}
+.map { 
+  width: 800px;
+  height: 500px; 
+}
+
+/*# sourceMappingURL=app.css.map */

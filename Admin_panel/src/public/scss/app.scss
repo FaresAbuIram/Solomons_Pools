@@ -1,0 +1,28 @@
+@import "_variables";
+@import "components/_tabs";
+@import "components/_header";
+@import "components/_panel";
+@import "components/_table";
+@import "pages/_login";
+@import "rsw/mw-1200";
+
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+html,body {
+        height: 100%;
+}
+.browse-button {
+        color: white !important;
+        display: inline;
+        margin-right: 10px;
+        i {
+                margin-left: 5px;
+        }
+}
+.core-container {
+        padding: 20px;
+}

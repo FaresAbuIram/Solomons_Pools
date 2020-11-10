@@ -1,0 +1,87 @@
+<div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    style="display: none;">
+    <div class="modal-dialog modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete operation</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure want to delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal" id="modalDismiss">No</button>
+                <button class="btn btn-danger" type="button" id="submitButton">Yes</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script>
+    // 1 => group of items 
+    // 2 => one item;
+    let deleteType = 2;
+    let deleteId = '';
+    $(document).ready(() => {
+        $('#checkall').on('change', () => {
+            $('.table-checkbox').prop('checked', $('#checkall').is(':checked'));
+        });
+        $('#openDeleteModalButton').on('click', () => {
+            deleteType = 1;
+            const checkboxes = $('.table-checkbox:checked');
+            if (checkboxes.length) {
+                $('#confirmDelete').modal('show')
+            } else {
+                showToast();
+            }
+
+        });
+
+
+        try {
+            $('#submitButton').on('click', () => {
+                $('#submitButton').prop('disabled', true);
+                $('#modalDismiss').prop('disabled', true);
+                if (deleteType == 2) {
+                    try {
+                        $(`.table-checkbox`).prop('checked', false);
+                        $(`.table-checkbox[value=${deleteId}]`).prop('checked', true);
+                    } catch (e) {
+                        console.log('checkbox not found');
+                    }
+                }
+                $('#deleteForm').submit();
+            });
+        } catch (e) {
+            console.log('delete form not found');
+        }
+    });
+    function openDeleteModal(item) {
+        deleteType = 2;
+        deleteId = $(item).data('id');
+        console.log(item, deleteId);
+        $('#confirmDelete').modal('show');
+    }
+    function showToast() {
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr["error"]("You didn't check any row", "Error");
+    }
+</script>

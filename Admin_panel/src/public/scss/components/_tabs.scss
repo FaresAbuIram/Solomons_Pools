@@ -1,0 +1,10 @@
+.pseu-tabs {
+    border: none !important;
+    .nav-tabs .nav-link.active, .tab-content {
+        border: 0px solid transparent;
+
+    }
+    .nav-tabs {
+        background: $tabs-background;
+    }
+}
