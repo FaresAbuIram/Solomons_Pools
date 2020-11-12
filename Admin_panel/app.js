@@ -9,6 +9,8 @@ const hbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const adminRoutes = require('./src/routes/home');
 const loginRoutes = require('./src/routes/login');
+const logoutRoutes = require('./src/routes/logout');
+const eventsRoutes = require('./src/routes/events');
 const auth = require('./src/middlewares/auth')
 
 const session = require('express-session');
@@ -16,6 +18,7 @@ const flash = require('express-flash');
 
 
 const dotenv = require('dotenv');
+require('./src/services/hbshelbers');
 require('dotenv').config({
 	path: '.env'
 });
@@ -74,7 +77,9 @@ app.set('views', path.join(__dirname, '/src/views'));
 app.use(express.static(__dirname + '/src/public'));
 dotenv.config();
 app.use(loginRoutes);
-//app.use(auth);
+app.use(auth);
 app.use('/', adminRoutes);
+app.use(logoutRoutes);
+app.use('/events', eventsRoutes);
 
 module.exports = app;

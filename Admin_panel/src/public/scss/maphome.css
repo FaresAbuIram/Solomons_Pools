@@ -1,0 +1,10 @@
+.homemap {
+    width: 100%;
+    right: 0;
+    height: 100%;
+  }
+  
+  canvas {
+    width: 1923px !important;
+    height: 890px;
+  }

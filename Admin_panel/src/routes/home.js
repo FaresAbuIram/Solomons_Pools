@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 router.get('/', async(req, res)  => {
 
-  res.render('pages/events/add-edit-events');
+  res.render('pages/dashboard/index');
 });
 
 module.exports = router;

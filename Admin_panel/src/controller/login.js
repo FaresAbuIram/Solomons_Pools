@@ -39,6 +39,7 @@ login = async (req, res) => {
                     },
                     process.env.TOKEN_SECRET
                 );
+                
                 // update user adding token
                 const updatedUser = await User.updateOne({
                     _id: user._id

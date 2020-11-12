@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate');
 const EventSchema = new Schema({
     name: {
         type: String,
@@ -20,19 +20,21 @@ const EventSchema = new Schema({
     },
 
     eventDate: {
-        type: Date
+        type: Date,
+        required: true,
     },
-    location: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-        },
-        coordinates: {
-            type: [Number],
-            required: true
-        }
+    eventTime: {
+        type: Date,
+        required: true,
+    },
+    lat: {
+        type: Number,
+        required: true
+    },
+    lng: {
+        type: Number,
+        required: true
     }
 });
-
+mongoose.plugin(mongoosePaginate);
 module.exports = mongoose.model('Event', EventSchema);
