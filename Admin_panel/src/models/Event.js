@@ -20,11 +20,11 @@ const EventSchema = new Schema({
     },
 
     eventDate: {
-        type: Date,
+        type: String,
         required: true,
     },
     eventTime: {
-        type: Date,
+        type: String,
         required: true,
     },
     lat: {

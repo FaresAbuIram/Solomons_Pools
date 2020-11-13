@@ -1,4 +1,3 @@
-
 <div class="c-body">
     <main class="c-main">
         <div class="container-fluid">
@@ -9,7 +8,12 @@
                             <div class="col-md-12">
                                 <div>
                                     {{!-- the text should be match the perpose Add/Edit --}}
-                                    <h4>Add new Event</h4>
+
+                                    <h4>{{#if id}}
+                                        Edit Event
+                                        {{else}}
+                                        Add new Event
+                                        {{/if}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -19,7 +23,9 @@
                     <div class="col-md-12">
                         <div class="panel mb-5 card-accent-info">
                             <div class="panel-body">
-                                <form action="#add Route">
+                                <form method="POST" enctype="multipart/form-data"
+                                    action={{#if id}}"/events/update/{{id}}" {{else}}"/events/create" {{/if}}>
+
                                     <div class="nav-tabs-boxed pseu-tabs">
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="general" role="tabpanel">
@@ -30,7 +36,9 @@
                                                                 <div class="form-group">
                                                                     <label>Event Name</label><span
                                                                         class="required text-danger ml-1">*</span>
-                                                                    <input type="text" class="form-control" required>
+                                                                    <input name="name" value={{#if id}} {{name}}
+                                                                        {{else}} "" {{/if}} type="text"
+                                                                        class="form-control" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-5">
@@ -38,29 +46,33 @@
                                                                     <label class="col-form-label" for="logo">Event
                                                                         Picture</label><span
                                                                         class="required text-danger ml-1">*</span>
-                                                                    <input id="logo" type="file" name="logo"
+                                                                    <input id="event" type="file" name="event"
                                                                         accept="image/png,image/jpg,image/jpeg"
-                                                                        required>
+                                                                        {{#if id}} {{else}}required{{/if}}>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label>Date</label>
-                                                                    <input type="time" class="form-control">
-                                                                     <input type="date" class="form-control">
+                                                                    <input name="time" type="time" class="form-control"
+                                                                        value=" {{#if id}}{{ eventTime  }}{{else}} "" {{/if}}">
+                                                                    <input name="date" type="date" class="form-control"
+                                                                        value=" {{#if id}}{{ eventDatwe  }}{{else}} "" {{/if}}">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label>Event Description</label><span
                                                                         class="required text-danger ml-1">*</span>
-                                                                    <textarea class="form-control" required></textarea>
+                                                                    <textarea class="form-control" name="description"
+                                                                        required>{{#if id}} {{description}}  {{/if}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <input type="hidden" id="latLng" name="latLng" value='{{#if id}}{"lat":{{lat}},"lng":{{lng}} }{{else}} none {{/if}}'>
                                             <label for="">Location</label>
                                             {{>map}}
                                         </div>
@@ -69,8 +81,8 @@
                                                 <div class="row">
                                                     <div class="col-md-10">
                                                         <div class="my-3 text-right">
-                                                            <button class="btn btn-primary"
-                                                                type="submit">Create</button>
+                                                            <button class="btn btn-primary" type="submit">{{#if id}}
+                                                                Edit {{else}} Create {{/if}}</button>
                                                         </div>
                                                     </div>
                                                 </div>

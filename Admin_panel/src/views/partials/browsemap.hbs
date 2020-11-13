@@ -2,14 +2,9 @@
 <script>
 
     let eLocation = document.getElementById('latLng').value;
-    let eLocParse = {
-        lat: 31.689951052514033,
-        lng: 35.16871690750338
-    };
-    if (eLocation!=' none ') {
+    let eLocParse = {  };
         eLocParse.lat = JSON.parse(eLocation).lat;
         eLocParse.lng = JSON.parse(eLocation).lng;
-    }
 
 
 
@@ -23,20 +18,7 @@
     var marker = new mapboxgl.Marker()
         .setLngLat([eLocParse.lng, eLocParse.lat])
         .addTo(map);
-    let loc = {
-        lat: eLocParse.lng,
-        lng: eLocParse.lat
-    }
-    document.getElementById('latLng').value = JSON.stringify(loc);
+   
 
-    map.on('click', function (e) {
-        marker.remove()
-        latlng = e.lngLat.wrap();
-        marker = new mapboxgl.Marker()
-            .setLngLat([latlng.lng, latlng.lat])
-            .addTo(map);
-        loc.lat = latlng.lat;
-        loc.lng = latlng.lng;
-        document.getElementById('latLng').value = JSON.stringify(loc);
-    });
+   
 </script>

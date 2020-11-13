@@ -13,8 +13,9 @@
                             <div class="col-md-12">
                                 <div class="d-flex flex-wrap">
                                     <div>
-                                        <a href="#addRoute" class="btn btn-block btn-success browse-button"
-                                            role="button" aria-pressed="true">
+                                        <a href="/events/add-edit-events/0"
+                                            class="btn btn-block btn-success browse-button" role="button"
+                                            aria-pressed="true">
                                             <span>Add new Event</span>
                                             <i class="fas fa-plus"></i>
                                         </a>
@@ -64,7 +65,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="/dev/delete" method="POST" id="deleteForm">
+                                        <form action="/events/delete" method="POST" id="deleteForm">
                                             <table class="coreuitable table table-responsive-sm table-striped">
                                                 <thead>
                                                     <tr>
@@ -81,8 +82,8 @@
                                                     {{#each events}}
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="deleteIds[]" value="_itemId1"
-                                                                class="table-checkbox">
+                                                            <input type="checkbox" name="deleteIds[]"
+                                                                value="{{this.opjectId}}" class="table-checkbox">
                                                         </td>
                                                         <td>{{this.name}}</td>
                                                         <td>{{this.time}}</td>
@@ -90,20 +91,21 @@
                                                         <td>
                                                             <div
                                                                 class="d-flex flex-wrap text-center justify-content-center">
-                                                                <button
+                                                                <a href="/events/browse/{{this.opjectId}}"
                                                                     class="btn mb-1 py-1 px-2 mr-2 btn-warning browse-button mr-1"
                                                                     aria-pressed="true">
                                                                     <span>Browse</span>
                                                                     <i class="fas fa-eye"></i>
-                                                                </button>
+                                                                </a>
                                                                 <a class="btn mb-1 py-1 px-2 mr-2 btn-info browse-button mr-1"
-                                                                    aria-pressed="true" href="/editRoute">
+                                                                    aria-pressed="true"
+                                                                    href="/events/add-edit-events/{{this.opjectId}}">
                                                                     <span>Edit</span>
                                                                     <i class="fas fa-edit"></i>
                                                                 </a>
                                                                 {{!-- This will open an modal --}}
                                                                 <button type="button" onclick="openDeleteModal(this)"
-                                                                    data-id='_itemId1'
+                                                                    data-id='{{this.opjectId}}'
                                                                     class="btn mb-1 py-1 px-2 btn-danger browse-button mr-1"
                                                                     aria-pressed="true" data-toggle="modal"
                                                                     data-target="#confirmDelete">

@@ -1,0 +1,90 @@
+<div class="c-body">
+    <main class="c-main">
+        <div class="container-fluid">
+            <div class="core-container">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <h4>Browse Event</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel mb-5 card-accent-info">
+                            <div class="panel-body">
+                                <div class="nav-tabs-boxed pseu-tabs">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="general" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Event Name</label>
+                                                                <p type="text" class="form-control">{{name}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label class="col-form-label" for="logo">Event
+                                                                    Picture</label>
+                                                                <div>
+                                                                    <img width="130" height="130" src={{picture}}>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Event Description</label>
+                                                                <textarea type="text" class="form-control"
+                                                                    readonly>{{description}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Time</label>
+                                                                <p type="text" class="form-control">{{eventTime}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Date</label>
+                                                                <p type="text" class="form-control">
+                                                                    {{eventDate}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <input type="hidden" id="latLng" name="latLng"
+                                                                    value='{"lat":{{lat}},"lng":{{lng}} }'>
+                                                                <label for="">Location</label>
+                                                                {{>browsemap}}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
