@@ -1,3 +1,4 @@
+  
 name: solomons_pools_flutter
 description: A new Flutter project.
 
@@ -23,6 +24,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^0.18.0
+  google_fonts_arabic: ^1.1.7
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -32,6 +36,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -45,8 +50,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -74,3 +79,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
