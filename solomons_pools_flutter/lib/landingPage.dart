@@ -31,7 +31,7 @@ class LandingPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "استمتع في جولة حول برك سليمان, وتعرف على جمال المنطقة وعلى الفعاليات المقامة فيها",
+              "استمتع في جولة حول برك سليمان, وتعرف على جمال المنطقة والفعاليات المقامة فيها",
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontFamily: ArabicFonts.Tajawal,
@@ -44,26 +44,29 @@ class LandingPage extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 50,
-                width: 270,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                  onPressed: () {},
-                  color: Color(0xFFF3A540),
-                  elevation: 10,
-                  textColor: Colors.white,
-                  child: Text(
-                    "أذهب الى الخريطة",
-                    style: TextStyle(
-                      fontFamily: ArabicFonts.Tajawal,
-                      package: 'google_fonts_arabic',
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 20,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                child: Container(
+                  height: 50,
+                  width: 270,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
                     ),
-                    textAlign: TextAlign.center,
+                    onPressed: () {},
+                    color: Color(0xFFF3A540),
+                    elevation: 10,
+                    textColor: Colors.white,
+                    child: Text(
+                      "أذهب الى الخريطة",
+                      style: TextStyle(
+                        fontFamily: ArabicFonts.Tajawal,
+                        package: 'google_fonts_arabic',
+                        //fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
