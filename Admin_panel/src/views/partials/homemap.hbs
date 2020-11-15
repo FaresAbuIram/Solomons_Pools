@@ -1,6 +1,10 @@
 <div class="homemap" id="map"></div>
 <link href="/scss/maphome.css" rel="stylesheet">
 <script>
+    const all = document.getElementById('allevents').value;
+    const events = JSON.parse(all);
+
+
     mapboxgl.accessToken = 'pk.eyJ1IjoiZmFyaXNhYnUzcnJhbSIsImEiOiJja2g5amhubnIwdXV4MnhucWI5cWsyYnh4In0.9yGExLwa7ctqJAtqxTIZBA';
     var map = new mapboxgl.Map({
         container: 'map',
@@ -8,15 +12,23 @@
         center: [35.16793370246888, 31.689010739990746],
         style: 'mapbox://styles/farisabu3rram/ckhay9fye02vd19pjcxs5bl3k'
     });
-    var marker = new mapboxgl.Marker()
-        .setLngLat([35.16793370246888, 31.689010739990746])
-        .addTo(map);
+    for (let i = 0; i < events.length; i++) {
+        var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+            `<div >
+                  <div>
+                    ${events[i].description}
+                 </div>
+                 <div>
+                    ${events[i].eventDate} at ${events[i].eventTime}
+                </div>
+                <img style="width:100px;height:100px;" src=${events[i].picture}>`
+        );
+        var marker = new mapboxgl.Marker()
+            .setLngLat([events[i].lng, events[i].lat])
+            .setPopup(popup)
+            
+            .addTo(map);
+    }
 
-    map.on('click', function (e) {
-        marker.remove()
-        latlng =e.lngLat.wrap();
-         marker = new mapboxgl.Marker()
-        .setLngLat([latlng.lng, latlng.lat])
-        .addTo(map);
-    });
+
 </script>

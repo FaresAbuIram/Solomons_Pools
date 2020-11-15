@@ -11,6 +11,7 @@ const adminRoutes = require('./src/routes/home');
 const loginRoutes = require('./src/routes/login');
 const logoutRoutes = require('./src/routes/logout');
 const eventsRoutes = require('./src/routes/events');
+const profileRoutes = require('./src/routes/profile');
 const auth = require('./src/middlewares/auth')
 
 const session = require('express-session');
@@ -81,5 +82,8 @@ app.use(auth);
 app.use('/', adminRoutes);
 app.use(logoutRoutes);
 app.use('/events', eventsRoutes);
+app.use('/profile',profileRoutes);
+
+
 
 module.exports = app;

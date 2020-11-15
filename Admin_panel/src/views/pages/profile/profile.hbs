@@ -1,0 +1,23 @@
+<link href="/scss/profile.css" rel="stylesheet">
+<div class="card-container">
+         <div class="upper-container">
+            <div class="image-container">
+               <img src="{{picture}}" />
+            </div>
+         </div>
+         <div class="lower-container">
+            <div>
+               <h4>{{userName}}</h4>
+              
+            </div>
+            <div>
+               <p>{{email}}
+               </p>
+            </div>
+            <div>
+               <a data-toggle="modal"  data-target="#updateModal" class="btn">Edit</a>
+            </div>
+         </div>
+      </div>
+</div>
+{{>updateprofile}}
