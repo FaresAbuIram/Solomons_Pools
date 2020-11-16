@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
+import 'package:solomons_pools_flutter/AboutUs.dart';
 import 'landingPage.dart';
 import 'main.dart';
 
@@ -20,10 +21,7 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
       //Solyman borak page
       'صفحة برك سليمان',
     ),
-    Text(
-      //ABOUT PAGE
-      'صفحة تعريف عن الفريق',
-    ),
+    AboutUs(),
   ];
 
   void _onItemTapped(int index) {
