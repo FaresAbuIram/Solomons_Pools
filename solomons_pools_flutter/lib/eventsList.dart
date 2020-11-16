@@ -1,38 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:google_fonts_arabic/fonts.dart';
-import 'Creator.dart';
+import 'event.dart';
+import 'package:mongo_dart/mongo_dart.dart' as mongo;
+import 'eventItem.dart';
 
-class AboutUs extends StatefulWidget {
-  AboutUs({Key key}) : super(key: key);
+class EvenstList extends StatefulWidget {
+  EvenstList({Key key}) : super(key: key);
 
   @override
-  _AboutUsState createState() => _AboutUsState();
+  _EvenstListState createState() => _EvenstListState();
 }
 
-class _AboutUsState extends State<AboutUs> {
-  //This is the About us page:
+class _EvenstListState extends State<EvenstList> {
+  //This is the EventsList page:
+  Future<List<Event>> futureEvents;
 
-  List<Creator> creators = [
-    Creator(
-        "فارس أبو عرام",
-        "I'm a full-stack developer and a data scientist studying at palestine polytechnic university",
-        "faris-pic.jpg",
-        "1-1-2020",
-        "Saturday"),
-    Creator(
-        "عمرو عمرو",
-        "I'm a full-stack developer and a data scientist studying at palestine polytechnic university",
-        "amro-pic.jpg",
-        "1-1-2020",
-        "Saturday"),
-    Creator(
-        "وسام الحروب",
-        "I'm a full-stack developer and a data scientist studying at palestine polytechnic university",
-        "wisam-pic.jpg",
-        "1-1-2020",
-        "Saturday")
-  ];
+  Future<List<Event>> fetchEvents() async {
+    var db = await mongo.Db.create(
+        "mongodb+srv://solomons_pools:t0XEJRZIM9a5vZDL@cluster0.aob8x.mongodb.net/solomons_pools?readPreference=secondary&replicaSet=your_replSet_name&ssl=true");
+    await db.open();
+    final col = db.collection('events');
+    final data = await col.find().toList();
+    //return data;
+    List<Event> events = [];
+    data.forEach((element) => {
+          events.add(
+            Event(
+              descriptionEvent: element['description'],
+              eventName: element['name'],
+              eventPicture: element['picture'],
+              eventTime: element['eventTime'].toString(),
+              eventDate: element['eventDate'].toString(),
+            ),
+          )
+        });
+    return events;
+
+    //success, parse json data
+  }
+
+  void initState() {
+    super.initState();
+    this.futureEvents = fetchEvents();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,83 +53,24 @@ class _AboutUsState extends State<AboutUs> {
           bottom: 10,
         ),
         child: Swiper(
-          itemCount: creators.length,
           viewportFraction: 0.8,
+          itemCount: 7,
           scale: 0.9,
           loop: true,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              child: Card(
-                semanticContainer: true,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        'assets/images/${creators[index].eventPicture}',
-                        fit: BoxFit.fill,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Text(
-                          '${creators[index].eventName}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            fontFamily: ArabicFonts.Cairo,
-                            package: 'google_fonts_arabic',
-                            color: Colors.blueGrey[800],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 8,
-                          right: 8,
-                          bottom: 8,
-                          top: 10,
-                        ),
-                        child: Text(
-                          '${creators[index].descriptionEvent}',
-                          style: TextStyle(fontSize: 17),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 8,
-                          right: 8,
-                          bottom: 8,
-                          top: 10,
-                        ),
-                        child: Text(
-                          'Event date : ${creators[index].eventTime}',
-                          style: TextStyle(fontSize: 17),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 8,
-                          right: 8,
-                          bottom: 8,
-                          top: 10,
-                        ),
-                        child: Text(
-                          'Event Time : ${creators[index].eventDate}',
-                          style: TextStyle(fontSize: 17),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                elevation: 5,
-                margin: EdgeInsets.all(10),
-              ),
+            return FutureBuilder<List<Event>>(
+              future: this.futureEvents,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<Event> events = snapshot.data;
+                  return EventItem(event: events[index]);
+                } else if (snapshot.hasError) {
+                  return Text("error ${snapshot.error}");
+                }
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
             );
           },
         ),

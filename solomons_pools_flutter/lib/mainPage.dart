@@ -21,7 +21,7 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
       //Solyman borak page
       'صفحة برك سليمان',
     ),
-    AboutUs(),
+    EvenstList(),
   ];
 
   void _onItemTapped(int index) {

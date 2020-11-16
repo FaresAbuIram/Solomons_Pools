@@ -27,6 +27,7 @@ dependencies:
   flutter_svg: ^0.18.0
   google_fonts_arabic: ^1.1.7
   flutter_swiper: ^1.1.6
+  mongo_dart: ^0.4.4
 
 
   # The following adds the Cupertino Icons font to your application.
