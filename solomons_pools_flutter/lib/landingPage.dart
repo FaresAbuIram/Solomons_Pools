@@ -77,10 +77,11 @@ class LandingPage extends StatelessWidget {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Container(
-                  child: SvgPicture.asset(
-                "assets/images/m1.svg",
-                height: 200,
-              )),
+                child: SvgPicture.asset(
+                  "assets/images/m1.svg",
+                  height: 200,
+                ),
+              ),
             ),
           ),
         ],

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-import 'package:solomons_pools_flutter/AboutUs.dart';
+import 'package:solomons_pools_flutter/eventsList.dart';
 import 'landingPage.dart';
 import 'main.dart';
 
@@ -49,7 +49,7 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20),
+            bottom: Radius.circular(15),
           ),
         ),
       ),
@@ -70,7 +70,9 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.directions_boat),
+            icon: Icon(
+              Icons.directions_boat,
+            ),
             title: Text(
               "برك سليمان",
               style: TextStyle(
@@ -81,9 +83,9 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.import_contacts),
+            icon: Icon(Icons.event),
             title: Text(
-              "من نحن",
+              "الفعاليات",
               style: TextStyle(
                 fontFamily: ArabicFonts.Tajawal,
                 package: 'google_fonts_arabic',
@@ -93,7 +95,7 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: mainColor,
+        selectedItemColor: Color(0xFFF3A540),
         onTap: _onItemTapped,
       ),
     );
