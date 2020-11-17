@@ -42,24 +42,28 @@ class SoolmonPools extends StatelessWidget {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               PictureCard(picture: "s1.jpg"),
               PictureCard(picture: "s2.jpg"),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               PictureCard(picture: "s3.jpg"),
               PictureCard(picture: "s4.jpg"),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               PictureCard(picture: "s5.jpg"),
               PictureCard(picture: "s6.jpg"),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               PictureCard(picture: "s7.jpg"),
               PictureCard(picture: "s8.jpg"),

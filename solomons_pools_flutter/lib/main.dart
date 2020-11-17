@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'mainPage.dart';
+import 'package:provider/provider.dart';
+import 'package:solomons_pools_flutter/navbar.dart';
+import 'package:solomons_pools_flutter/provider.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 
 void main() {
@@ -19,7 +21,10 @@ class MyApp extends StatelessWidget {
         child: Center(
           child: SplashScreen.navigate(
             name: "assets/images/welcome_page.flr",
-            next: MainPageStatefulWidget(),
+            next: ChangeNotifierProvider(
+              create: (context) => EventData(),
+              child: BottomNavBar(),
+            ),
             height: double.infinity,
             alignment: Alignment.center,
             until: () => Future.delayed(Duration(seconds: 4)),
