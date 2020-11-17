@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:solomons_pools_flutter/eventsList.dart';
+import 'package:solomons_pools_flutter/solomonPools.dart';
 import 'landingPage.dart';
 import 'main.dart';
 
@@ -17,7 +18,8 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
     LandingPage(),
-    AboutUs(),
+    SoolmonPools(),
+    EvenstList(),
   ];
 
   void _onItemTapped(int index) {
@@ -56,6 +58,7 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
+            // ignore: deprecated_member_use
             title: Text(
               "الرئيسية",
               style: TextStyle(

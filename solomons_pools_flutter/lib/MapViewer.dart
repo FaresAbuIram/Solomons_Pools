@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:mongo_dart/mongo_dart.dart' as mongo;
 import 'package:flutter/material.dart';
+import 'package:google_fonts_arabic/fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapViewer extends StatefulWidget {
@@ -9,142 +11,193 @@ class MapViewer extends StatefulWidget {
 
 class MapViewerState extends State<MapViewer> {
   Completer<GoogleMapController> _controller = Completer();
+  Future<Set<Marker>> futureEvents = _fetchEvents();
 
   @override
   void initState() {
     super.initState();
   }
 
-  double zoomVal = 5.0;
+  double zoomVal = 16.0;
+  MapType mapType = MapType.normal;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          _buildGoogleMap(context),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Card(
-              child: FittedBox(
-                child: Column(
-                  children: [
-                    IconButton(
-                        icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
-                        onPressed: () {
-                          zoomVal--;
-                          _minus(zoomVal);
-                        }),
-                    IconButton(
-                        icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
-                        onPressed: () {
-                          zoomVal++;
-                          _plus(zoomVal);
-                        }),
-                  ],
+    Widget children;
+    return FutureBuilder(
+        future: futureEvents,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            children = Center(child: Text("Loading"));
+          }
+          children = Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              toolbarHeight: 70,
+              backgroundColor: Color(0xFFF3A540),
+              title: Text(
+                "برك سليمان",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: ArabicFonts.Tajawal,
+                  package: 'google_fonts_arabic',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(15),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+            body: Stack(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: GoogleMap(
+                    mapType: mapType,
+                    initialCameraPosition: CameraPosition(
+                        target: LatLng(31.689, 35.1698), zoom: zoomVal),
+                    onMapCreated: (GoogleMapController controller) {
+                      _controller.complete(controller);
+                    },
+                    markers: snapshot.data,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Card(
+                      child: FittedBox(
+                        child: Column(
+                          children: [
+                            IconButton(
+                                icon: Icon(Icons.zoom_out,
+                                    color: Color(0xff6200ee)),
+                                onPressed: () {
+                                  zoomVal--;
+                                  _minus(zoomVal);
+                                }),
+                            IconButton(
+                                icon: Icon(Icons.zoom_in,
+                                    color: Color(0xff6200ee)),
+                                onPressed: () {
+                                  zoomVal++;
+                                  _plus(zoomVal);
+                                }),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Card(
+                      child: FittedBox(
+                        child: Column(
+                          children: [
+                            IconButton(
+                                icon: Icon(Icons.zoom_out,
+                                    color: Color(0xff6200ee)),
+                                onPressed: () {
+                                  zoomVal--;
+                                  _minus(zoomVal);
+                                }),
+                            IconButton(
+                                icon: Icon(Icons.zoom_in,
+                                    color: Color(0xff6200ee)),
+                                onPressed: () {
+                                  zoomVal++;
+                                  _plus(zoomVal);
+                                }),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+          return children;
+        });
   }
 
   Future<void> _minus(double zoomVal) async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(target: LatLng(40.712776, -74.005974), zoom: zoomVal)));
+        CameraPosition(target: LatLng(31.689, 35.1698), zoom: zoomVal)));
   }
 
   Future<void> _plus(double zoomVal) async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(target: LatLng(40.712776, -74.005974), zoom: zoomVal)));
-  }
-
-  Widget _buildGoogleMap(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition:
-            CameraPosition(target: LatLng(40.712776, -74.005974), zoom: 12),
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        markers: {
-          newyork1Marker,
-          newyork2Marker,
-          newyork3Marker,
-          gramercyMarker,
-          bernardinMarker,
-          blueMarker
-        },
-      ),
-    );
+        CameraPosition(target: LatLng(31.689, 35.1698), zoom: zoomVal)));
   }
 
   Future<void> _gotoLocation(double lat, double long) async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
       target: LatLng(lat, long),
-      zoom: 15,
+      zoom: 16.5,
       tilt: 50.0,
       bearing: 45.0,
     )));
   }
 }
 
-Marker gramercyMarker = Marker(
-  markerId: MarkerId('gramercy'),
-  position: LatLng(40.738380, -73.988426),
-  infoWindow: InfoWindow(title: 'Gramercy Tavern'),
-  icon: BitmapDescriptor.defaultMarkerWithHue(
-    BitmapDescriptor.hueViolet,
-  ),
-);
+Future<Set<Marker>> _fetchEvents() async {
+  var db = await mongo.Db.create(
+      "mongodb+srv://solomons_pools:t0XEJRZIM9a5vZDL@cluster0.aob8x.mongodb.net/solomons_pools?readPreference=secondary&replicaSet=your_replSet_name&ssl=true");
+  await db.open();
+  final col = db.collection('events');
+  final data = await col.find().toList();
+  Set<Marker> eventsMarkers;
 
-Marker bernardinMarker = Marker(
-  markerId: MarkerId('bernardin'),
-  position: LatLng(40.761421, -73.981667),
-  infoWindow: InfoWindow(title: 'Le Bernardin'),
-  icon: BitmapDescriptor.defaultMarkerWithHue(
-    BitmapDescriptor.hueViolet,
-  ),
-);
-Marker blueMarker = Marker(
-  markerId: MarkerId('bluehill'),
-  position: LatLng(40.732128, -73.999619),
-  infoWindow: InfoWindow(title: 'Blue Hill'),
-  icon: BitmapDescriptor.defaultMarkerWithHue(
-    BitmapDescriptor.hueViolet,
-  ),
-);
+  for (var item in data) {
+    eventsMarkers.add(Marker(
+      markerId: MarkerId(item['name']),
+      position: LatLng(item['lat'], item['long']),
+      infoWindow: InfoWindow(title: item['name']),
+      icon: BitmapDescriptor.defaultMarkerWithHue(
+        BitmapDescriptor.hueRed,
+      ),
+    ));
+  }
 
-//New York Marker
+  return eventsMarkers;
+}
 
-Marker newyork1Marker = Marker(
-  markerId: MarkerId('newyork1'),
-  position: LatLng(40.742451, -74.005959),
-  infoWindow: InfoWindow(title: 'Los Tacos'),
-  icon: BitmapDescriptor.defaultMarkerWithHue(
-    BitmapDescriptor.hueViolet,
+//Solmons Pools markers
+List<Marker> markers = [
+  new Marker(
+    markerId: MarkerId('solmonsPool1'),
+    position: LatLng(31.6892, 35.168),
+    infoWindow: InfoWindow(title: 'Solmons Pool 1'),
+    icon: BitmapDescriptor.defaultMarkerWithHue(
+      BitmapDescriptor.hueViolet,
+    ),
   ),
-);
-Marker newyork2Marker = Marker(
-  markerId: MarkerId('newyork2'),
-  position: LatLng(40.729640, -73.983510),
-  infoWindow: InfoWindow(title: 'Tree Bistro'),
-  icon: BitmapDescriptor.defaultMarkerWithHue(
-    BitmapDescriptor.hueViolet,
+  new Marker(
+    markerId: MarkerId('solmonsPool2'),
+    position: LatLng(31.689, 35.1698),
+    infoWindow: InfoWindow(title: 'Solmons Pool 2'),
+    icon: BitmapDescriptor.defaultMarkerWithHue(
+      BitmapDescriptor.hueViolet,
+    ),
   ),
-);
-Marker newyork3Marker = Marker(
-  markerId: MarkerId('newyork3'),
-  position: LatLng(40.719109, -74.000183),
-  infoWindow: InfoWindow(title: 'Le Coucou'),
-  icon: BitmapDescriptor.defaultMarkerWithHue(
-    BitmapDescriptor.hueViolet,
-  ),
-);
+  new Marker(
+    markerId: MarkerId('solmonsPool3'),
+    position: LatLng(31.6884, 35.1719),
+    infoWindow: InfoWindow(title: 'Solmons Pool 3'),
+    icon: BitmapDescriptor.defaultMarkerWithHue(
+      BitmapDescriptor.hueViolet,
+    ),
+  )
+];
