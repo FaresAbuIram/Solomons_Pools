@@ -17,10 +17,6 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
     LandingPage(),
-    Text(
-      //Solyman borak page
-      'صفحة برك سليمان',
-    ),
     AboutUs(),
   ];
 
