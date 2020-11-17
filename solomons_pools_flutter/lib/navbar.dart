@@ -1,35 +1,60 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-import 'package:solomons_pools_flutter/eventsList.dart';
-import 'package:solomons_pools_flutter/solomonPools.dart';
-import 'landingPage.dart';
+import 'package:provider/provider.dart';
+import 'package:solomons_pools_flutter/landingPage.dart';
+import 'package:solomons_pools_flutter/provider.dart';
+
+import 'event.dart';
+import 'eventsList.dart';
 import 'main.dart';
+import 'solomonPools.dart';
+import 'package:mongo_dart/mongo_dart.dart' as mongo;
 
-class MainPageStatefulWidget extends StatefulWidget {
-  MainPageStatefulWidget({Key key}) : super(key: key);
-
+class BottomNavBar extends StatefulWidget {
   @override
-  _MainPageStatefulWidgetState createState() => _MainPageStatefulWidgetState();
+  _BottomNavBarState createState() => _BottomNavBarState();
 }
 
-/// This is the private State class that goes with MyStatefulWidget.
-class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
-  int _selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
+class _BottomNavBarState extends State<BottomNavBar> {
+  Future<List<Event>> futureEvents;
+  fetchEvents() async {
+    var db = await mongo.Db.create(
+        "mongodb+srv://solomons_pools:t0XEJRZIM9a5vZDL@cluster0.aob8x.mongodb.net/solomons_pools?readPreference=secondary&replicaSet=your_replSet_name&ssl=true");
+    await db.open();
+    final col = db.collection('events');
+    final data = await col.find().toList();
+    //return data;
+
+    List<Event> events = [];
+    data.forEach((element) => {
+          events.add(
+            Event(
+              descriptionEvent: element['description'],
+              eventName: element['name'],
+              eventPicture: element['picture'],
+              eventTime: element['eventTime'].toString(),
+              eventDate: element['eventDate'].toString(),
+            ),
+          )
+        });
+
+    Provider.of<EventData>(context, listen: false).setEvents(events);
+    //success, parse json data
+  }
+
+  void initState() {
+    fetchEvents();
+    super.initState();
+  }
+
+  var currentTab = [
     LandingPage(),
     SoolmonPools(),
     EvenstList(),
   ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<EventData>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -51,9 +76,7 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
           ),
         ),
       ),
-      body: Container(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: currentTab[provider.currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -92,9 +115,11 @@ class _MainPageStatefulWidgetState extends State<MainPageStatefulWidget> {
             ),
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: provider.currentIndex,
         selectedItemColor: Color(0xFFF3A540),
-        onTap: _onItemTapped,
+        onTap: (index) {
+          provider.currentIndex = index;
+        },
       ),
     );
   }

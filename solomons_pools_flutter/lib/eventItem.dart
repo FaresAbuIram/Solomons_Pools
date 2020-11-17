@@ -22,7 +22,7 @@ class EventItem extends StatelessWidget {
                   '${event.eventPicture}',
                   fit: BoxFit.fitWidth,
                 ),
-                width: 300,
+                width: MediaQuery.of(context).size.width,
                 height: 200,
               ),
               Padding(

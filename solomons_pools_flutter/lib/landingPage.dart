@@ -79,7 +79,7 @@ class LandingPage extends StatelessWidget {
               child: Container(
                 child: SvgPicture.asset(
                   "assets/images/m1.svg",
-                  height: 200,
+                  height: MediaQuery.of(context).size.height * 0.40,
                 ),
               ),
             ),
