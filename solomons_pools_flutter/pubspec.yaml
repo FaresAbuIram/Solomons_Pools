@@ -31,7 +31,8 @@ dependencies:
   mongo_dart: ^0.4.4
   flare_splash_screen: ^2.0.1+2
   provider: ^4.3.2+2
-
+  modal_bottom_sheet: ^1.0.0+1
+  geolocator: ^6.1.4
 
 
   # The following adds the Cupertino Icons font to your application.
