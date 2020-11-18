@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-import 'package:solomons_pools_flutter/MapViewer.dart';
 import 'main.dart';
 
 class LandingPage extends StatelessWidget {
@@ -54,13 +53,7 @@ class LandingPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25.0),
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MapViewer(context
-                                  .dependOnInheritedWidgetOfExactType())));
-                    },
+                    onPressed: () {},
                     color: Color(0xFFF3A540),
                     elevation: 10,
                     textColor: Colors.white,

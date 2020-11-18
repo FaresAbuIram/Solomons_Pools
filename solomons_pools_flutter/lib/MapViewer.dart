@@ -6,7 +6,11 @@ import 'package:solomons_pools_flutter/provider.dart';
 import 'event.dart';
 
 class MapViewer extends StatefulWidget {
-  MapViewer(List<Event> eventData);
+  List<Event> eventData;
+
+  MapViewer(List<Event> eventData) {
+    this.eventData = eventData;
+  }
 
   @override
   MapViewerState createState() => MapViewerState(eventData);
@@ -24,6 +28,8 @@ class MapViewerState extends State<MapViewer> {
   @override
   void initState() {
     eventsMarkers = _getMarkers();
+    Provider.of<EventData>(context, listen: false).events =
+        Provider.of<EventData>(context, listen: false).allEvents;
     super.initState();
   }
 
@@ -32,82 +38,75 @@ class MapViewerState extends State<MapViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EventData>(builder: (context, value, child) {
-      if (value.geteventsNumber() == 0)
-        return Center(child: CircularProgressIndicator());
-      else
-        return Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: GoogleMap(
-                mapType: mapType,
-                initialCameraPosition: CameraPosition(
-                    target: LatLng(31.689, 35.1698), zoom: zoomVal),
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
-                markers: eventsMarkers,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Card(
-                  child: FittedBox(
-                    child: Column(
-                      children: [
-                        IconButton(
-                            icon:
-                                Icon(Icons.zoom_out, color: Color(0xff6200ee)),
-                            onPressed: () {
-                              zoomVal--;
-                              _minus(zoomVal);
-                            }),
-                        IconButton(
-                            icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
-                            onPressed: () {
-                              zoomVal++;
-                              _plus(zoomVal);
-                            }),
-                      ],
-                    ),
-                  ),
+    return Stack(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: GoogleMap(
+            mapType: mapType,
+            initialCameraPosition:
+                CameraPosition(target: LatLng(31.689, 35.1698), zoom: zoomVal),
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
+            markers: eventsMarkers,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Card(
+              child: FittedBox(
+                child: Column(
+                  children: [
+                    IconButton(
+                        icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
+                        onPressed: () {
+                          zoomVal--;
+                          _minus(zoomVal);
+                        }),
+                    IconButton(
+                        icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
+                        onPressed: () {
+                          zoomVal++;
+                          _plus(zoomVal);
+                        }),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Card(
-                  child: FittedBox(
-                    child: Column(
-                      children: [
-                        IconButton(
-                            icon:
-                                Icon(Icons.zoom_out, color: Color(0xff6200ee)),
-                            onPressed: () {
-                              zoomVal--;
-                              _minus(zoomVal);
-                            }),
-                        IconButton(
-                            icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
-                            onPressed: () {
-                              zoomVal++;
-                              _plus(zoomVal);
-                            }),
-                      ],
-                    ),
-                  ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Card(
+              child: FittedBox(
+                child: Column(
+                  children: [
+                    IconButton(
+                        icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
+                        onPressed: () {
+                          zoomVal--;
+                          _minus(zoomVal);
+                        }),
+                    IconButton(
+                        icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
+                        onPressed: () {
+                          zoomVal++;
+                          _plus(zoomVal);
+                        }),
+                  ],
                 ),
               ),
             ),
-          ],
-        );
-    });
+          ),
+        ),
+      ],
+    );
   }
 
   Set<Marker> _getMarkers() {
