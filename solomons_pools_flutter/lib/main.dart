@@ -14,25 +14,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Container(
-        padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
-        color: Colors.white,
-        child: Center(
-          child: SplashScreen.navigate(
-            name: "assets/images/welcome_page.flr",
-            next: ChangeNotifierProvider(
-              create: (context) => EventData(),
-              child: BottomNavBar(),
+    return ChangeNotifierProvider(
+        create: (context) => EventData(),
+        child: MaterialApp(
+          home: Container(
+            padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+            color: Colors.white,
+            child: Center(
+              child: SplashScreen.navigate(
+                name: "assets/images/welcome_page.flr",
+                next: BottomNavBar(),
+                height: double.infinity,
+                alignment: Alignment.center,
+                until: () => Future.delayed(Duration(seconds: 4)),
+                backgroundColor: Colors.white,
+                startAnimation: "welcome",
+              ),
             ),
-            height: double.infinity,
-            alignment: Alignment.center,
-            until: () => Future.delayed(Duration(seconds: 4)),
-            backgroundColor: Colors.white,
-            startAnimation: "welcome",
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

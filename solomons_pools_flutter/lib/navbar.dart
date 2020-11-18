@@ -3,12 +3,13 @@ import 'package:google_fonts_arabic/fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:solomons_pools_flutter/landingPage.dart';
 import 'package:solomons_pools_flutter/provider.dart';
-
 import 'event.dart';
 import 'eventsList.dart';
 import 'main.dart';
 import 'solomonPools.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
+
+List<Event> events = [];
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -25,16 +26,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
     final data = await col.find().toList();
     //return data;
 
-    List<Event> events = [];
     data.forEach((element) => {
           events.add(
             Event(
-              descriptionEvent: element['description'],
-              eventName: element['name'],
-              eventPicture: element['picture'],
-              eventTime: element['eventTime'].toString(),
-              eventDate: element['eventDate'].toString(),
-            ),
+                descriptionEvent: element['description'],
+                eventName: element['name'],
+                eventPicture: element['picture'],
+                eventTime: element['eventTime'].toString(),
+                eventDate: element['eventDate'].toString(),
+                lat: element['lat'],
+                lng: element['lng']),
           )
         });
 
@@ -47,11 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     super.initState();
   }
 
-  var currentTab = [
-    LandingPage(),
-    SoolmonPools(),
-    EvenstList(),
-  ];
+  var currentTab = [LandingPage(), SoolmonPools(), EvenstList()];
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<EventData>(context);
@@ -78,6 +75,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
       body: currentTab[provider.currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(

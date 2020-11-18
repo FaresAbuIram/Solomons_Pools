@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts_arabic/fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:solomons_pools_flutter/provider.dart';
+import 'package:toast/toast.dart';
+import 'MapViewer.dart';
 import 'main.dart';
 
 class LandingPage extends StatelessWidget {
@@ -48,8 +52,10 @@ class LandingPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25.0),
               ),
               onPressed: () {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) => /*to map*/ ));
+                Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => MapViewer()));
               },
               color: Color(0xFFF3A540),
               elevation: 10,
@@ -61,6 +67,7 @@ class LandingPage extends StatelessWidget {
                   package: 'google_fonts_arabic',
                   //fontWeight: FontWeight.bold,
                   fontSize: 18,
+
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -85,3 +92,5 @@ class LandingPage extends StatelessWidget {
     );
   }
 }
+
+showDialog(BuildContext context) {}

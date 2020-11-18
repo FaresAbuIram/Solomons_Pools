@@ -5,22 +5,15 @@ class Event {
   String descriptionEvent;
   String eventTime;
   String eventDate;
+  double lat, lng;
   Event(
       {this.eventName,
       this.descriptionEvent,
       this.eventPicture,
       this.eventTime,
-      this.eventDate});
-
-  factory Event.fromJson(dynamic json) {
-    return Event(
-      eventName: json['name'],
-      descriptionEvent: json['description'],
-      eventPicture: json['picture'],
-      eventTime: json['eventTime'].toString(),
-      eventDate: json['eventDate'].toString(),
-    );
-  }
+      this.eventDate,
+      this.lat,
+      this.lng});
 
   @override
   String toString() {
