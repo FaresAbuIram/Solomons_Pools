@@ -22,7 +22,7 @@ class EvenstList extends StatelessWidget {
               viewportFraction: 0.8,
               itemCount: value.geteventsNumber(),
               scale: 0.9,
-              loop: true,
+              loop: false,
               itemBuilder: (BuildContext context, int index) {
                 return EventItem(event: value.allEvents[index]);
               },
