@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts_arabic/fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:solomons_pools_flutter/provider.dart';
+import 'package:toast/toast.dart';
+import 'MapViewer.dart';
 import 'main.dart';
 
 class LandingPage extends StatelessWidget {
@@ -53,7 +57,18 @@ class LandingPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25.0),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (Provider.of<EventData>(context, listen: false)
+                              .geteventsNumber() !=
+                          0)
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    MapViewer()));
+                      else
+                        Toast.show("Connection was lost", context);
+                    },
                     color: Color(0xFFF3A540),
                     elevation: 10,
                     textColor: Colors.white,

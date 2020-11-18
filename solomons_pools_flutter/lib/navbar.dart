@@ -3,7 +3,6 @@ import 'package:google_fonts_arabic/fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:solomons_pools_flutter/landingPage.dart';
 import 'package:solomons_pools_flutter/provider.dart';
-import 'MapViewer.dart';
 import 'event.dart';
 import 'eventsList.dart';
 import 'main.dart';
@@ -30,12 +29,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
     data.forEach((element) => {
           events.add(
             Event(
-              descriptionEvent: element['description'],
-              eventName: element['name'],
-              eventPicture: element['picture'],
-              eventTime: element['eventTime'].toString(),
-              eventDate: element['eventDate'].toString(),
-            ),
+                descriptionEvent: element['description'],
+                eventName: element['name'],
+                eventPicture: element['picture'],
+                eventTime: element['eventTime'].toString(),
+                eventDate: element['eventDate'].toString(),
+                lat: element['lat'],
+                lng: element['lng']),
           )
         });
 
@@ -48,12 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     super.initState();
   }
 
-  var currentTab = [
-    LandingPage(),
-    SoolmonPools(),
-    MapViewer(events),
-    EvenstList()
-  ];
+  var currentTab = [LandingPage(), SoolmonPools(), EvenstList()];
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<EventData>(context);
@@ -99,19 +94,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             title: Text(
               "برك سليمان",
-              style: TextStyle(
-                fontFamily: ArabicFonts.Tajawal,
-                package: 'google_fonts_arabic',
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.directions_boat,
-            ),
-            title: Text(
-              "الخريطة",
               style: TextStyle(
                 fontFamily: ArabicFonts.Tajawal,
                 package: 'google_fonts_arabic',

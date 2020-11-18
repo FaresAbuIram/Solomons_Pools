@@ -1,35 +1,22 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts_arabic/fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:solomons_pools_flutter/provider.dart';
+
 import 'event.dart';
 
 class MapViewer extends StatefulWidget {
-  List<Event> eventData;
-
-  MapViewer(List<Event> eventData) {
-    this.eventData = eventData;
-  }
-
   @override
-  MapViewerState createState() => MapViewerState(eventData);
+  MapViewerState createState() => MapViewerState();
 }
 
 class MapViewerState extends State<MapViewer> {
   Completer<GoogleMapController> _controller = Completer();
-  Set<Marker> eventsMarkers;
-  List<Event> events;
-
-  MapViewerState(List<Event> eventData) {
-    this.events = eventData;
-  }
 
   @override
   void initState() {
-    eventsMarkers = _getMarkers();
-    Provider.of<EventData>(context, listen: false).events =
-        Provider.of<EventData>(context, listen: false).allEvents;
     super.initState();
   }
 
@@ -38,92 +25,100 @@ class MapViewerState extends State<MapViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: GoogleMap(
-            mapType: mapType,
-            initialCameraPosition:
-                CameraPosition(target: LatLng(31.689, 35.1698), zoom: zoomVal),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-            markers: eventsMarkers,
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 70,
+        backgroundColor: Color(0xFFF3A540),
+        title: Text(
+          "برك سليمان",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: ArabicFonts.Tajawal,
+            package: 'google_fonts_arabic',
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Card(
-              child: FittedBox(
-                child: Column(
-                  children: [
-                    IconButton(
-                        icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
-                        onPressed: () {
-                          zoomVal--;
-                          _minus(zoomVal);
-                        }),
-                    IconButton(
-                        icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
-                        onPressed: () {
-                          zoomVal++;
-                          _plus(zoomVal);
-                        }),
-                  ],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(15),
+          ),
+        ),
+      ),
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: GoogleMap(
+              mapType: mapType,
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(31.689, 35.1698), zoom: zoomVal),
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+              markers: Provider.of<EventData>(context).getMarkers(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Card(
+                child: FittedBox(
+                  child: Column(
+                    children: [
+                      IconButton(
+                          icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
+                          onPressed: () {
+                            zoomVal--;
+                            //_minus(zoomVal);
+                          }),
+                      IconButton(
+                          icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
+                          onPressed: () {
+                            zoomVal++;
+                            //_plus(zoomVal);
+                          }),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Card(
-              child: FittedBox(
-                child: Column(
-                  children: [
-                    IconButton(
-                        icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
-                        onPressed: () {
-                          zoomVal--;
-                          _minus(zoomVal);
-                        }),
-                    IconButton(
-                        icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
-                        onPressed: () {
-                          zoomVal++;
-                          _plus(zoomVal);
-                        }),
-                  ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Card(
+                child: FittedBox(
+                  child: Column(
+                    children: [
+                      IconButton(
+                          icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
+                          onPressed: () {
+                            zoomVal--;
+                            //_minus(zoomVal);
+                          }),
+                      IconButton(
+                          icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
+                          onPressed: () {
+                            zoomVal++;
+                            //_plus(zoomVal);
+                          }),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  Set<Marker> _getMarkers() {
-    Set<Marker> markers;
-    Provider.of<EventData>(context).allEvents.forEach((element) => {
-          markers.add(Marker(
-            markerId: MarkerId(element.eventName),
-            position: LatLng(element.lat, element.lng),
-            infoWindow: InfoWindow(title: element.eventName),
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueViolet,
-            ),
-          ))
-        });
-    return markers;
-  }
-
+/*
   Future<void> _minus(double zoomVal) async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(
@@ -150,7 +145,7 @@ class MapViewerState extends State<MapViewer> {
       tilt: 50.0,
       bearing: 45.0,
     )));
-  }
+  }*/
 }
 
 //Solmons Pools markers

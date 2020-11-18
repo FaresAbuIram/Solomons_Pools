@@ -15,17 +15,6 @@ class Event {
       this.lat,
       this.lng});
 
-  factory Event.fromJson(dynamic json) {
-    return Event(
-        eventName: json['name'],
-        descriptionEvent: json['description'],
-        eventPicture: json['picture'],
-        eventTime: json['eventTime'].toString(),
-        eventDate: json['eventDate'].toString(),
-        lat: json['lat'],
-        lng: json['lng']);
-  }
-
   @override
   String toString() {
     return '{ ${this.eventName}, ${this.descriptionEvent}, ${this.eventDate} }';
