@@ -58,16 +58,10 @@ class LandingPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     onPressed: () {
-                      if (Provider.of<EventData>(context, listen: false)
-                              .geteventsNumber() !=
-                          0)
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    MapViewer()));
-                      else
-                        Toast.show("Connection was lost", context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => MapViewer()));
                     },
                     color: Color(0xFFF3A540),
                     elevation: 10,
@@ -104,3 +98,5 @@ class LandingPage extends StatelessWidget {
     );
   }
 }
+
+showDialog(BuildContext context) {}
