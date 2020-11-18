@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:solomons_pools_flutter/landingPage.dart';
 import 'package:solomons_pools_flutter/provider.dart';
 
+import 'MapViewer.dart';
 import 'event.dart';
 import 'eventsList.dart';
 import 'main.dart';
@@ -47,7 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     super.initState();
   }
 
-  var currentTab = [LandingPage(), SoolmonPools(), EvenstList(), MapViewer()];
+  var currentTab = [LandingPage(), SoolmonPools(), MapViewer(), EvenstList()];
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<EventData>(context);
@@ -74,10 +75,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
       body: currentTab[provider.currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            // ignore: deprecated_member_use
             title: Text(
               "الرئيسية",
               style: TextStyle(
@@ -93,6 +94,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             title: Text(
               "برك سليمان",
+              style: TextStyle(
+                fontFamily: ArabicFonts.Tajawal,
+                package: 'google_fonts_arabic',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.directions_boat,
+            ),
+            title: Text(
+              "الخريطة",
               style: TextStyle(
                 fontFamily: ArabicFonts.Tajawal,
                 package: 'google_fonts_arabic',

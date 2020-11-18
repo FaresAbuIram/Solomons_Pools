@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_fonts_arabic/fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:solomons_pools_flutter/provider.dart';
@@ -25,97 +24,82 @@ class MapViewerState extends State<MapViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        toolbarHeight: 70,
-        backgroundColor: Color(0xFFF3A540),
-        title: Text(
-          "برك سليمان",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: ArabicFonts.Tajawal,
-            package: 'google_fonts_arabic',
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(15),
-          ),
-        ),
-      ),
-      body: Stack(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: GoogleMap(
-              mapType: mapType,
-              initialCameraPosition: CameraPosition(
-                  target: LatLng(31.689, 35.1698), zoom: zoomVal),
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
-              markers: eventsMarkers,
+    return Consumer<EventData>(builder: (context, value, child) {
+      if (value.geteventsNumber() == 0)
+        return Center(child: CircularProgressIndicator());
+      else
+        return Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: GoogleMap(
+                mapType: mapType,
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(31.689, 35.1698), zoom: zoomVal),
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+                markers: eventsMarkers,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Card(
-                child: FittedBox(
-                  child: Column(
-                    children: [
-                      IconButton(
-                          icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
-                          onPressed: () {
-                            zoomVal--;
-                            _minus(zoomVal);
-                          }),
-                      IconButton(
-                          icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
-                          onPressed: () {
-                            zoomVal++;
-                            _plus(zoomVal);
-                          }),
-                    ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Card(
+                  child: FittedBox(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            icon:
+                                Icon(Icons.zoom_out, color: Color(0xff6200ee)),
+                            onPressed: () {
+                              zoomVal--;
+                              _minus(zoomVal);
+                            }),
+                        IconButton(
+                            icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
+                            onPressed: () {
+                              zoomVal++;
+                              _plus(zoomVal);
+                            }),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Card(
-                child: FittedBox(
-                  child: Column(
-                    children: [
-                      IconButton(
-                          icon: Icon(Icons.zoom_out, color: Color(0xff6200ee)),
-                          onPressed: () {
-                            zoomVal--;
-                            _minus(zoomVal);
-                          }),
-                      IconButton(
-                          icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
-                          onPressed: () {
-                            zoomVal++;
-                            _plus(zoomVal);
-                          }),
-                    ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Card(
+                  child: FittedBox(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            icon:
+                                Icon(Icons.zoom_out, color: Color(0xff6200ee)),
+                            onPressed: () {
+                              zoomVal--;
+                              _minus(zoomVal);
+                            }),
+                        IconButton(
+                            icon: Icon(Icons.zoom_in, color: Color(0xff6200ee)),
+                            onPressed: () {
+                              zoomVal++;
+                              _plus(zoomVal);
+                            }),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        );
+    });
   }
 
   Set<Marker> _getMarkers() {
