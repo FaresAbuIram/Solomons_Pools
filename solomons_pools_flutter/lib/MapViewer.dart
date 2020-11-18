@@ -9,12 +9,17 @@ class MapViewer extends StatefulWidget {
   MapViewer(List<Event> eventData);
 
   @override
-  MapViewerState createState() => MapViewerState();
+  MapViewerState createState() => MapViewerState(eventData);
 }
 
 class MapViewerState extends State<MapViewer> {
   Completer<GoogleMapController> _controller = Completer();
   Set<Marker> eventsMarkers;
+  List<Event> events;
+
+  MapViewerState(List<Event> eventData) {
+    this.events = eventData;
+  }
 
   @override
   void initState() {
