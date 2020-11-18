@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:solomons_pools_flutter/provider.dart';
-import 'package:toast/toast.dart';
 import 'MapViewer.dart';
 import 'main.dart';
 
