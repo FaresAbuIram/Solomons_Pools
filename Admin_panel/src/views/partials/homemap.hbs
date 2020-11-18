@@ -15,6 +15,9 @@
     for (let i = 0; i < events.length; i++) {
         var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
             `<div >
+                <div>
+                    ${events[i].name}
+                 </div>
                   <div>
                     ${events[i].description}
                  </div>
