@@ -42,50 +42,44 @@ class LandingPage extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                child: Container(
-                  height: 50,
-                  width: 270,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
+          Container(
+            width: MediaQuery.of(context).size.width * .7,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              onPressed: () {
+                Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) => MapViewer()));
-                    },
-                    color: Color(0xFFF3A540),
-                    elevation: 10,
-                    textColor: Colors.white,
-                    child: Text(
-                      "أذهب الى الخريطة",
-                      style: TextStyle(
-                        fontFamily: ArabicFonts.Tajawal,
-                        package: 'google_fonts_arabic',
-                        //fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+              },
+              color: Color(0xFFF3A540),
+              elevation: 10,
+              textColor: Colors.white,
+              child: Text(
+                "أذهب الى الخريطة",
+                style: TextStyle(
+                  fontFamily: ArabicFonts.Tajawal,
+                  package: 'google_fonts_arabic',
+                  //fontWeight: FontWeight.bold,
+                  fontSize: 18,
+
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              alignment: Alignment.bottomCenter,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Container(
-                child: SvgPicture.asset(
-                  "assets/images/m1.svg",
-                  height: MediaQuery.of(context).size.height * 0.40,
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  child: SvgPicture.asset(
+                    "assets/images/m1.svg",
+                    height: MediaQuery.of(context).size.height * 0.40,
+                  ),
                 ),
               ),
             ),

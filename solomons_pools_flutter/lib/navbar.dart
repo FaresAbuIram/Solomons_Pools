@@ -78,7 +78,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+            ),
             title: Text(
               "الرئيسية",
               style: TextStyle(
@@ -102,7 +104,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.event),
+            icon: Icon(
+              Icons.event,
+            ),
             title: Text(
               "الفعاليات",
               style: TextStyle(
