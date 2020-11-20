@@ -23,7 +23,7 @@ class LandingPage extends StatelessWidget {
                   fontFamily: ArabicFonts.Tajawal,
                   package: 'google_fonts_arabic',
                   color: mainColor,
-                  fontSize: 25,
+                  fontSize: MediaQuery.of(context).size.height * 0.045,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -38,26 +38,29 @@ class LandingPage extends StatelessWidget {
                 fontFamily: ArabicFonts.Tajawal,
                 package: 'google_fonts_arabic',
                 fontWeight: FontWeight.w600,
-                fontSize: 17,
+                fontSize: MediaQuery.of(context).size.height * 0.03,
               ),
             ),
           ),
           Container(
             width: MediaQuery.of(context).size.width * .7,
             child: MaterialButton(
+              elevation: 12,
               textColor: Colors.white,
               minWidth: 250.0,
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(12.0),
               color: Color(0XFFF3A540),
               child: Text(
                 "اذهب الى الخريطة",
                 style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: MediaQuery.of(context).size.height * 0.037,
+                ),
               ),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0)),
+                borderRadius: BorderRadius.circular(50.0),
+              ),
               onPressed: () {
                 Navigator.push(
                   context,

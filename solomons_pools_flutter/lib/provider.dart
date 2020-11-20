@@ -28,10 +28,8 @@ class EventData extends ChangeNotifier {
 
   Set<Marker> getMarkers(BuildContext context) {
     Set<Marker> markers = {};
-    events.forEach(
-      (element) => {
-        markers.add(
-          Marker(
+    events.forEach((element) => {
+          markers.add(Marker(
             markerId: MarkerId(element.eventName),
             position: LatLng(element.lat, element.lng),
             infoWindow: InfoWindow(
@@ -51,6 +49,7 @@ class EventData extends ChangeNotifier {
                 builder: (context) => SingleChildScrollView(
                   controller: ModalScrollController.of(context),
                   child: Container(
+                    height: MediaQuery.of(context).size.height * 0.7,
                     child: Center(
                       child: SingleChildScrollView(
                         child: Column(
@@ -61,7 +60,6 @@ class EventData extends ChangeNotifier {
                                 fit: BoxFit.fitWidth,
                               ),
                               width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.35,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(5),
@@ -125,10 +123,8 @@ class EventData extends ChangeNotifier {
                 ),
               );
             },
-          ),
-        ),
-      },
-    );
+          ))
+        });
     return markers;
   }
 }
