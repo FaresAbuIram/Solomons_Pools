@@ -2,17 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-import 'package:solomons_pools_flutter/pictureItem.dart';
-import 'package:solomons_pools_flutter/pictures.dart';
+import 'package:solomons_pools_flutter/sliderImage.dart';
 import 'main.dart';
 
 class SoolmonPools extends StatelessWidget {
-  final List<Pictures> pictures = [
-    Pictures("s1.jpg", "s2.jpg"),
-    Pictures("s3.jpg", "s4.jpg"),
-    Pictures("s5.jpg", "s6.jpg"),
-    Pictures("s7.jpg", "s8.jpg"),
-  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,15 +41,7 @@ class SoolmonPools extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            itemCount: pictures.length,
-            itemBuilder: (BuildContext context, int index) {
-              return PictureItem(
-                image1: pictures[index].image1,
-                image2: pictures[index].image2,
-              );
-            },
-          ),
+          child: ComplicatedImageDemo(),
         ),
       ],
     );

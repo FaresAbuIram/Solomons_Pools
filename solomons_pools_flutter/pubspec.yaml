@@ -33,6 +33,7 @@ dependencies:
   provider: ^4.3.2+2
   modal_bottom_sheet: ^1.0.0+1
   geolocator: ^6.1.4
+  carousel_slider: ^2.3.1
 
 
   # The following adds the Cupertino Icons font to your application.
