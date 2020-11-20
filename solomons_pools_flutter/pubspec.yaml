@@ -27,7 +27,7 @@ dependencies:
   flutter_svg: ^0.18.0
   google_fonts_arabic: ^1.1.7
   flutter_swiper: ^1.1.6
-  google_maps_flutter: ^1.0.6
+  google_maps_flutter: 
   mongo_dart: ^0.4.4
   flare_splash_screen: ^2.0.1+2
   provider: ^4.3.2+2
@@ -86,4 +86,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-

@@ -44,30 +44,29 @@ class LandingPage extends StatelessWidget {
           ),
           Container(
             width: MediaQuery.of(context).size.width * .7,
-            child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0),
+            child: MaterialButton(
+              textColor: Colors.white,
+              minWidth: 250.0,
+              padding: const EdgeInsets.all(15.0),
+              color: Color(0XFFF3A540),
+              child: Text(
+                "اذهب الى الخريطة",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0),
               ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50.0)),
               onPressed: () {
                 Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => MapViewer()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => MapViewer(),
+                  ),
+                );
               },
-              color: Color(0xFFF3A540),
-              elevation: 10,
-              textColor: Colors.white,
-              child: Text(
-                "أذهب الى الخريطة",
-                style: TextStyle(
-                  fontFamily: ArabicFonts.Tajawal,
-                  package: 'google_fonts_arabic',
-                  //fontWeight: FontWeight.bold,
-                  fontSize: 18,
-
-                ),
-                textAlign: TextAlign.center,
-              ),
+              splashColor: Colors.redAccent[100],
             ),
           ),
           Expanded(
@@ -89,5 +88,3 @@ class LandingPage extends StatelessWidget {
     );
   }
 }
-
-showDialog(BuildContext context) {}

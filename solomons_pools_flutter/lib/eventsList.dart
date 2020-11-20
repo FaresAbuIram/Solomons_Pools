@@ -13,21 +13,24 @@ class EvenstList extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         else
           return Container(
-              child: Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              bottom: 10,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 10,
+                bottom: 10,
+              ),
+              child: Swiper(
+                viewportFraction: 0.8,
+                itemCount: value.geteventsNumber(),
+                scale: 0.9,
+                loop: false,
+                itemBuilder: (BuildContext context, int index) {
+                  return EventItem(
+                    event: value.allEvents[index],
+                  );
+                },
+              ),
             ),
-            child: Swiper(
-              viewportFraction: 0.8,
-              itemCount: value.geteventsNumber(),
-              scale: 0.9,
-              loop: false,
-              itemBuilder: (BuildContext context, int index) {
-                return EventItem(event: value.allEvents[index]);
-              },
-            ),
-          ));
+          );
       },
     );
   }

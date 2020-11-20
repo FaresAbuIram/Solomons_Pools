@@ -28,8 +28,10 @@ class EventData extends ChangeNotifier {
 
   Set<Marker> getMarkers(BuildContext context) {
     Set<Marker> markers = {};
-    events.forEach((element) => {
-          markers.add(Marker(
+    events.forEach(
+      (element) => {
+        markers.add(
+          Marker(
             markerId: MarkerId(element.eventName),
             position: LatLng(element.lat, element.lng),
             infoWindow: InfoWindow(
@@ -123,8 +125,10 @@ class EventData extends ChangeNotifier {
                 ),
               );
             },
-          ))
-        });
+          ),
+        ),
+      },
+    );
     return markers;
   }
 }

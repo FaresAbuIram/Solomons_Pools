@@ -27,30 +27,31 @@ class MapViewerState extends State<MapViewer> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: position,
-        builder: (context, snapshot) {
-          return Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              toolbarHeight: 70,
-              backgroundColor: Color(0xFFF3A540),
-              title: Text(
-                "برك سليمان",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: ArabicFonts.Tajawal,
-                  package: 'google_fonts_arabic',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                ),
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(15),
-                ),
+      future: position,
+      builder: (context, snapshot) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            toolbarHeight: 70,
+            backgroundColor: Color(0xFFF3A540),
+            title: Text(
+              "برك سليمان",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: ArabicFonts.Tajawal,
+                package: 'google_fonts_arabic',
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
               ),
             ),
-            body: Stack(children: [
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(15),
+              ),
+            ),
+          ),
+          body: Stack(
+            children: [
               Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
@@ -58,8 +59,12 @@ class MapViewerState extends State<MapViewer> {
                     child: GoogleMap(
                       mapType: mapType,
                       initialCameraPosition: CameraPosition(
-                          target: LatLng(31.689, 35.1698), zoom: zoomVal),
-                      onMapCreated: (GoogleMapController controller) {
+                        target: LatLng(31.689, 35.1698),
+                        zoom: zoomVal,
+                      ),
+                      onMapCreated: (
+                        GoogleMapController controller,
+                      ) {
                         _controller.complete(controller);
                       },
                       markers:
@@ -73,7 +78,9 @@ class MapViewerState extends State<MapViewer> {
                   child: Card(
                     child: FittedBox(
                         child: FlatButton(
-                      child: Icon(Icons.location_searching),
+                      child: Icon(
+                        Icons.location_searching,
+                      ),
                       onPressed: () {
                         print(snapshot.data);
                       },
@@ -81,9 +88,11 @@ class MapViewerState extends State<MapViewer> {
                   ),
                 ),
               ),
-            ]),
-          );
-        });
+            ],
+          ),
+        );
+      },
+    );
   }
 
 /*

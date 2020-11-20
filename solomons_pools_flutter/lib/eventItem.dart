@@ -23,7 +23,7 @@ class EventItem extends StatelessWidget {
                   fit: BoxFit.fitWidth,
                 ),
                 width: MediaQuery.of(context).size.width,
-                height: 200,
+                //height: 150,
               ),
               Padding(
                 padding: const EdgeInsets.all(5),
