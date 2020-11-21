@@ -23,7 +23,7 @@ class LandingPage extends StatelessWidget {
                   fontFamily: ArabicFonts.Tajawal,
                   package: 'google_fonts_arabic',
                   color: mainColor,
-                  fontSize: 25,
+                  fontSize: MediaQuery.of(context).size.height * 0.045,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -38,35 +38,40 @@ class LandingPage extends StatelessWidget {
                 fontFamily: ArabicFonts.Tajawal,
                 package: 'google_fonts_arabic',
                 fontWeight: FontWeight.w600,
-                fontSize: 17,
+                fontSize: MediaQuery.of(context).size.height * 0.025,
               ),
             ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width * .7,
-            child: RaisedButton(
+            padding: EdgeInsets.only(top: 20),
+            width: MediaQuery.of(context).size.width * .6,
+            child: MaterialButton(
+              elevation: 12,
+              textColor: Colors.white,
+              minWidth: 250.0,
+              height: 60,
+              color: Color(0XFFF3A540),
+              child: Center(
+                child: Text("اذهب الى الخريطة",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: MediaQuery.of(context).size.height * 0.030,
+                    ),
+                    textAlign: TextAlign.center),
+              ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0),
+                borderRadius: BorderRadius.circular(50.0),
               ),
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => MapViewer()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => MapViewer(),
+                  ),
+                );
               },
-              color: Color(0xFFF3A540),
-              elevation: 10,
-              textColor: Colors.white,
-              child: Text(
-                "أذهب الى الخريطة",
-                style: TextStyle(
-                  fontFamily: ArabicFonts.Tajawal,
-                  package: 'google_fonts_arabic',
-                  //fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              splashColor: Colors.redAccent[100],
             ),
           ),
           Expanded(
@@ -88,5 +93,3 @@ class LandingPage extends StatelessWidget {
     );
   }
 }
-
-showDialog(BuildContext context) {}

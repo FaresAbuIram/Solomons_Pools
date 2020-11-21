@@ -26,18 +26,20 @@ class _BottomNavBarState extends State<BottomNavBar> {
     final data = await col.find().toList();
     //return data;
 
-    data.forEach((element) => {
-          events.add(
-            Event(
-                descriptionEvent: element['description'],
-                eventName: element['name'],
-                eventPicture: element['picture'],
-                eventTime: element['eventTime'].toString(),
-                eventDate: element['eventDate'].toString(),
-                lat: element['lat'],
-                lng: element['lng']),
-          )
-        });
+    data.forEach(
+      (element) => {
+        events.add(
+          Event(
+              descriptionEvent: element['description'],
+              eventName: element['name'],
+              eventPicture: element['picture'],
+              eventTime: element['eventTime'].toString(),
+              eventDate: element['eventDate'].toString(),
+              lat: element['lat'],
+              lng: element['lng']),
+        )
+      },
+    );
 
     Provider.of<EventData>(context, listen: false).setEvents(events);
     //success, parse json data

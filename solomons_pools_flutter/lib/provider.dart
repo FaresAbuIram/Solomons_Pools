@@ -7,6 +7,13 @@ import 'event.dart';
 class EventData extends ChangeNotifier {
   int _currentIndex = 0;
   List<Event> events = [];
+  double lat = 31.689, lng = 35.1698;
+
+  void setPosition(double lat, double lng) {
+    this.lat = lat;
+    this.lng = lng;
+    notifyListeners();
+  }
 
   void setEvents(List<Event> e) {
     this.events = e;
@@ -54,12 +61,15 @@ class EventData extends ChangeNotifier {
                         child: Column(
                           children: [
                             Container(
-                              child: Image.network(
-                                '${element.eventPicture}',
-                                fit: BoxFit.fitWidth,
+                              height: MediaQuery.of(context).size.height * 0.33,
+                              child: Container(
+                                height: 240,
+                                child: Image.network(
+                                  '${element.eventPicture}',
+                                  fit: BoxFit.fitWidth,
+                                ),
                               ),
                               width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.35,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(5),
