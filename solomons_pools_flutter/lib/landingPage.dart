@@ -23,7 +23,7 @@ class LandingPage extends StatelessWidget {
                   fontFamily: ArabicFonts.Tajawal,
                   package: 'google_fonts_arabic',
                   color: mainColor,
-                  fontSize: MediaQuery.of(context).size.height * 0.045,
+                  fontSize: MediaQuery.of(context).size.height * 0.037,
                   fontWeight: FontWeight.bold,
                 ),
               ),
