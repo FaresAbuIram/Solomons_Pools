@@ -1,8 +1,8 @@
 <div class="homemap" id="map"></div>
 <link href="/scss/maphome.css" rel="stylesheet">
 <script>
-    const all = document.getElementById('allevents').value;
-    const events = JSON.parse(all);
+    const all = document.getElementById('allplaces').value;
+    const places = JSON.parse(all);
 
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiZmFyaXNhYnUzcnJhbSIsImEiOiJja2g5amhubnIwdXV4MnhucWI5cWsyYnh4In0.9yGExLwa7ctqJAtqxTIZBA';
@@ -12,22 +12,18 @@
         center: [35.16793370246888, 31.689010739990746],
         style: 'mapbox://styles/farisabu3rram/ckhay9fye02vd19pjcxs5bl3k'
     });
-    for (let i = 0; i < events.length; i++) {
+    for (let i = 0; i < places.length; i++) {
         var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
             `<div >
                 <div>
-                    ${events[i].name}
+                    ${places[i].name}
                  </div>
                   <div>
-                    ${events[i].description}
-                 </div>
-                 <div>
-                    ${events[i].eventDate} at ${events[i].eventTime}
-                </div>
-                <img style="width:100px;height:100px;" src=${events[i].picture}>`
+                    ${places[i].about}
+                 </div>`
         );
         var marker = new mapboxgl.Marker()
-            .setLngLat([events[i].lng, events[i].lat])
+            .setLngLat([places[i].lng, places[i].lat])
             .setPopup(popup)
             
             .addTo(map);

@@ -12,6 +12,7 @@ const loginRoutes = require('./src/routes/login');
 const logoutRoutes = require('./src/routes/logout');
 const eventsRoutes = require('./src/routes/events');
 const profileRoutes = require('./src/routes/profile');
+const placesRoutes = require('./src/routes/places');
 const auth = require('./src/middlewares/auth')
 
 const session = require('express-session');
@@ -83,6 +84,7 @@ app.use('/', adminRoutes);
 app.use(logoutRoutes);
 app.use('/events', eventsRoutes);
 app.use('/profile',profileRoutes);
+app.use('/places',placesRoutes);
 
 
 
