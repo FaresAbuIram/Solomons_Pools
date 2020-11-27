@@ -7,16 +7,16 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-4">
-                                    <h2>Events</h2>
+                                    <h2>Places</h2>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="d-flex flex-wrap">
                                     <div>
-                                        <a href="/events/add-edit-events/0"
+                                        <a href="/places/add-edit-places/0"
                                             class="btn btn-block btn-success browse-button" role="button"
                                             aria-pressed="true">
-                                            <span>Add new Event</span>
+                                            <span>Add new Place</span>
                                             <i class="fas fa-plus"></i>
                                         </a>
                                     </div>
@@ -36,13 +36,13 @@
                     <div class="col-md-12">
                         <div class="panel mb-5">
                             <div class="panel-body">
-                                <form action="/events" method="GET" enctype="multipart/form-data">
+                                <form action="/places" method="GET" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Search</label>
                                                 <input class="form-control" id="search" name="search" type="text"
-                                                    placeholder="Events name..." value="{{browse.searchText}}">
+                                                    placeholder="Place name..." value="{{browse.searchText}}">
                                             </div>
                                         </div>
                                         <div class="col-md-6 align-self-end">
@@ -65,35 +65,29 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="/events/delete" method="POST" id="deleteForm">
+                                        <form action="/places/delete" method="POST" id="deleteForm">
                                             <table class="coreuitable table table-responsive-sm table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>
                                                             <input type="checkbox" name="" id="checkall">
                                                         </th>
-                                                        <th>Event Name</th>
-                                                        <th>Time</th>
-                                                        <th>Data</th>
-                                                        <th>Place</th>
+                                                        <th>Place Name</th>
                                                         <th class="text-center">Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{#each events}}
+                                                    {{#each places}}
                                                     <tr>
                                                         <td>
                                                             <input type="checkbox" name="deleteIds[]"
                                                                 value="{{this.opjectId}}" class="table-checkbox">
                                                         </td>
                                                         <td>{{this.name}}</td>
-                                                        <td>{{this.time}}</td>
-                                                        <td>{{this.date}}</td>
-                                                        <td>{{this.place}}</td>
                                                         <td>
                                                             <div
                                                                 class="d-flex flex-wrap text-center justify-content-center">
-                                                                <a href="/events/browse/{{this.opjectId}}"
+                                                                <a href="/places/browse/{{this.opjectId}}"
                                                                     class="btn mb-1 py-1 px-2 mr-2 btn-warning browse-button mr-1"
                                                                     aria-pressed="true">
                                                                     <span>Browse</span>
@@ -101,7 +95,7 @@
                                                                 </a>
                                                                 <a class="btn mb-1 py-1 px-2 mr-2 btn-info browse-button mr-1"
                                                                     aria-pressed="true"
-                                                                    href="/events/add-edit-events/{{this.opjectId}}">
+                                                                    href="/places/add-edit-places/{{this.opjectId}}">
                                                                     <span>Edit</span>
                                                                     <i class="fas fa-edit"></i>
                                                                 </a>
@@ -134,20 +128,20 @@
                                                             {{#if (isEqual browse.activePage @index)}}
                                                             <li class="page-item active">
                                                                 <a class="page-link"
-                                                                    href="/projects?page={{inc @index}}">
+                                                                    href="/places?page={{inc @index}}">
                                                                     {{inc @index}}</a>
                                                             </li>
                                                             {{else}}
                                                             <li class="page-item ">
                                                                 <a class="page-link"
-                                                                    href="/projects?page={{inc @index}}&&search={{browse.searchText}}">
+                                                                    href="/places?page={{inc @index}}&&search={{browse.searchText}}">
                                                                     {{inc @index}}</a>
                                                             </li>
                                                             {{/if}}
                                                             {{/repeat}}
                                                             <li class="page-item">
                                                                 <a class="page-link"
-                                                                    href="/projects?page={{ browse.nextPage }}&&search={{browse.searchText}}"
+                                                                    href="/places?page={{ browse.nextPage }}&&search={{browse.searchText}}"
                                                                     aria-label="Next">
                                                                     <span aria-hidden="true">»</span>
                                                                     <span class="sr-only">Next</span>

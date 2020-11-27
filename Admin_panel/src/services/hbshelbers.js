@@ -30,6 +30,8 @@ handlebars.registerHelper('inc', function(value , options) {
 
 // Helper for check if two values are equals
 handlebars.registerHelper('isEqual',function(val1,val2){
+	console.log(val1)
+	console.log(val2)
 	return val1 == val2;
 })
 handlebars.registerHelper('isNotEqual',function(val1,val2){
@@ -52,4 +54,7 @@ handlebars.registerHelper('decIfPossible',function(val,min){
 handlebars.registerHelper('parseLine',function (str) {
 	let result = querystring.escape(str);
 	return result;
+});
+handlebars.registerHelper('getObject',function (v1, v2) {
+	return v1[v2];
 });

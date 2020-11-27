@@ -21,6 +21,7 @@ const storage = multer.diskStorage({
 const uploadLocalStorage = multer({ storage }).fields([
 	{ name: `profilePicture` },
 	{ name: `event` },
+	{ name: `place` },
 ]);
 
 // Cloudinary configuration

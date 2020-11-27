@@ -2,39 +2,30 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate');
-const EventSchema = new Schema({
+const PlaceSchema = new Schema({
     name: {
         type: String,
         required: true,
         trim: true
     },
-    description: {
+    about: {
         type: String,
         required: true,
         trim: true
     },
-    picture: {
-        type: String,
+    pictures: {
+        type: [String],
         required: true,
         trim: true
     },
-
-    eventDate: {
-        type: String,
-        required: true,
-    },
-    eventTime: {
-        type: String,
-        required: true,
-    },
-    placeName: {
-        type: String,
+    lat: {
+        type: Number,
         required: true
     },
-    placeId: {
-        type: Schema.ObjectId,
+    lng: {
+        type: Number,
         required: true
     }
 });
 mongoose.plugin(mongoosePaginate);
-module.exports = mongoose.model('Event', EventSchema);
+module.exports = mongoose.model('Place', PlaceSchema);

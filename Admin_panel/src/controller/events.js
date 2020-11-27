@@ -1,4 +1,5 @@
 const Event = require('../models/Event')
+const Place = require('../models/Place')
 const mongoose = require('mongoose');
 const imageuploadservice = require('../services/imageuploadservice');
 
@@ -33,6 +34,7 @@ getEvents = async (req, res) => {
                 name: e.name,
                 date: e.eventDate,
                 time: e.eventTime,
+                place: e.placeName,
                 opjectId: e._id,
             };
             info.push(pro);
@@ -51,6 +53,7 @@ getEvents = async (req, res) => {
             prevPage: (page - 1 <= 0) ? 1 : page - 1,
         }
         await Event.find({}).then((events) => {
+            
             return res.render('pages/events/index', {
                 events: info,
                 browse: browse
@@ -59,19 +62,25 @@ getEvents = async (req, res) => {
         })
 
     } catch (error) {
-        console.log(error)
+        req.flash('danger', 'An error occured!');
     }
 }
 
 addEdit = async (req, res) => {
     try {
+        const allPlaces = await Place.find({});
         let id = req.params.id;
-        if (id == '0') return res.render('pages/events/add-edit-events');
+        if (id == '0') return res.render('pages/events/add-edit-events', {
+            allPlaces: allPlaces
+        });
         try {
             const event = await Event.findById(id);
-            console.log(event)
             if (!event) return res.status(404).send('Not found !');
-            return res.status(200).render('pages/events/add-edit-events', event);
+            return res.status(200).render('pages/events/add-edit-events', {
+                event: event,
+                allPlaces: allPlaces,
+                id,
+            });
         } catch (error) {
             console.log(error)
             return res.status(500).send({
@@ -79,13 +88,14 @@ addEdit = async (req, res) => {
             });
         }
     } catch (error) {
-        res.send(error);
+        req.flash('danger', 'An error occured!');
     }
 };
 createEvent = async (req, res) => {
     try {
         imageuploadservice.uploadLocalStorage(req, res, async (err) => {
-            let loc = JSON.parse(req.body.latLng);
+
+
             const name = req.body.name;
             const description = req.body.description;
 
@@ -98,6 +108,7 @@ createEvent = async (req, res) => {
 
             const eventTime = req.body.time;
             const eventDate = req.body.date;
+            const place = await Place.findById(req.body.select);
 
 
             const newEvent = new Event({
@@ -106,8 +117,8 @@ createEvent = async (req, res) => {
                 picture: image.url,
                 eventTime: eventTime,
                 eventDate: eventDate,
-                lat: loc.lat,
-                lng: loc.lng
+                placeId: req.body.select,
+                placeName: place.name
             });
             newEvent.save().then((data) => {
                 req.flash('success', 'Event Added');
@@ -121,7 +132,7 @@ createEvent = async (req, res) => {
         })
 
     } catch (error) {
-        res.send(error);
+        req.flash('danger', 'An error occured!');
     }
 
 };
@@ -132,18 +143,21 @@ updateEvent = async (req, res) => {
             let id = req.params.id;
             const name = req.body.name;
             const description = req.body.description;
-            let loc = JSON.parse(req.body.latLng);
+
 
             const event = await Event.findById(id);
             let eventImage = event.picture;
             let eventTime = event.eventTime;
             let eventDate = event.eventDate;
-            let lat = event.lat;
-            let lng = event.lng;
-            if (loc) {
-                lat = loc.lat;
-                lng = loc.lng;
+            let placeName = event.placeName;
+            let placeId = event.placeId;
+            if(req.body.select){
+                const place = await Place.findById(req.body.select);
+                placeId = req.body.select;
+                placeName = place.name
+
             }
+
             if (req.files.event) {
                 const imagePath = req.files.event[0].path;
                 const image = await imageuploadservice.uploadCloudinary(
@@ -168,8 +182,8 @@ updateEvent = async (req, res) => {
                         picture: eventImage,
                         eventTime: eventTime,
                         eventDate: eventDate,
-                        lat: lat,
-                        lng: lng
+                        placeId: placeId,
+                        placeName: placeName
                     },
                 },
                 (err) => {

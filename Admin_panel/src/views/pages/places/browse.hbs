@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div>
-                                    <h4>Browse Event</h4>
+                                    <h4>Browse Place</h4>
                                 </div>
                             </div>
                         </div>
@@ -25,45 +25,35 @@
                                                     <div class="row">
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label>Event Name</label>
+                                                                <label>Place Name</label>
                                                                 <p type="text" class="form-control">{{name}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label class="col-form-label" for="logo">Event
-                                                                    Picture</label>
+                                                                <label class="col-form-label" for="logo">Place
+                                                                    Pictures</label>
+                                                                     
                                                                 <div>
-                                                                    <img width="130" height="130" src={{picture}}>
+                                                                    {{#each pictures}}
+                                                                    <img width="130" height="130" src={{this}}>
+                                                                     {{/each}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label>Event Description</label>
+                                                                <label>About the Place</label>
                                                                 <textarea type="text" class="form-control"
-                                                                    readonly>{{description}}</textarea>
+                                                                    readonly>{{about}}</textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-5">
-                                                            <div class="form-group">
-                                                                <label>Time</label>
-                                                                <p type="text" class="form-control">{{eventTime}}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-5">
-                                                            <div class="form-group">
-                                                                <label>Date</label>
-                                                                <p type="text" class="form-control">
-                                                                    {{eventDate}}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-5">
-                                                            <div class="form-group">
-                                                                <label>Place of Event</label>
-                                                                <p type="text" class="form-control">
-                                                                    {{placeName}}</p>
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <input type="hidden" id="latLng" name="latLng"
+                                                                    value='{"lat":{{lat}},"lng":{{lng}} }'>
+                                                                <label for="">Location</label>
+                                                                {{>browsemap}}
                                                             </div>
                                                         </div>
 
@@ -71,8 +61,12 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
