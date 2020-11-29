@@ -3,57 +3,15 @@ import 'package:google_fonts_arabic/fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:solomons_pools_flutter/landingPage.dart';
 import 'package:solomons_pools_flutter/provider.dart';
-import 'event.dart';
 import 'eventsList.dart';
 import 'main.dart';
 import 'solomonPools.dart';
-import 'package:mongo_dart/mongo_dart.dart' as mongo;
 
-List<Event> events = [];
-
-class BottomNavBar extends StatefulWidget {
-  @override
-  _BottomNavBarState createState() => _BottomNavBarState();
-}
-
-class _BottomNavBarState extends State<BottomNavBar> {
-  Future<List<Event>> futureEvents;
-  fetchEvents() async {
-    var db = await mongo.Db.create(
-        "mongodb+srv://solomons_pools:t0XEJRZIM9a5vZDL@cluster0.aob8x.mongodb.net/solomons_pools?readPreference=secondary&replicaSet=your_replSet_name&ssl=true");
-    await db.open();
-    final col = db.collection('events');
-    final data = await col.find().toList();
-    //return data;
-
-    data.forEach(
-      (element) => {
-        events.add(
-          Event(
-              descriptionEvent: element['description'],
-              eventName: element['name'],
-              eventPicture: element['picture'],
-              eventTime: element['eventTime'].toString(),
-              eventDate: element['eventDate'].toString(),
-              lat: element['lat'],
-              lng: element['lng']),
-        )
-      },
-    );
-
-    Provider.of<EventData>(context, listen: false).setEvents(events);
-    //success, parse json data
-  }
-
-  void initState() {
-    fetchEvents();
-    super.initState();
-  }
-
-  var currentTab = [LandingPage(), SoolmonPools(), EvenstList()];
+class BottomNavBar extends StatelessWidget {
+  final currentTab = [LandingPage(), SoolmonPools(), EvenstList()];
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<EventData>(context);
+    final provider = Provider.of<EventData>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

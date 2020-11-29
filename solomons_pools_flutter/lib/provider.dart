@@ -38,7 +38,7 @@ class EventData extends ChangeNotifier {
     events.forEach((element) => {
           markers.add(Marker(
             markerId: MarkerId(element.eventName),
-            position: LatLng(element.lat, element.lng),
+            position: LatLng(31.689, 35.1698),
             infoWindow: InfoWindow(
               title: element.eventName,
             ),
