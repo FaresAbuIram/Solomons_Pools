@@ -5,18 +5,18 @@ class Event {
   String descriptionEvent;
   String eventTime;
   String eventDate;
-  double lat, lng;
-  Event(
-      {this.eventName,
-      this.descriptionEvent,
-      this.eventPicture,
-      this.eventTime,
-      this.eventDate,
-      this.lat,
-      this.lng});
+  String place;
+  Event({
+    this.eventName,
+    this.descriptionEvent,
+    this.eventPicture,
+    this.eventTime,
+    this.eventDate,
+    this.place,
+  });
 
   @override
   String toString() {
-    return '{ ${this.eventName}, ${this.descriptionEvent}, ${this.eventDate} }';
+    return '{ ${this.eventName}, ${this.place}, ${this.descriptionEvent}, ${this.eventDate} }';
   }
 }

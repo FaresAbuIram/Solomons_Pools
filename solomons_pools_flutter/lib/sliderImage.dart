@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 final List<String> imgList = [
   "assets/images/s1.jpg",
   "assets/images/s2.jpg",
-  "assets/images/s3.jpg",
   "assets/images/s4.jpg",
   "assets/images/s5.jpg",
   "assets/images/s6.jpg",

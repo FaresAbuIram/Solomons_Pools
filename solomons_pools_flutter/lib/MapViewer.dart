@@ -96,17 +96,20 @@ class MapViewerState extends State<MapViewer> {
                   alignment: Alignment.topRight,
                   child: Card(
                     child: FittedBox(
-                        child: FlatButton(
-                      child: Icon(
-                        Icons.location_searching,
+                      child: FlatButton(
+                        child: Icon(
+                          Icons.location_searching,
+                        ),
+                        onPressed: () {
+                          getMyLocation();
+                          goToMyLocation(
+                              Provider.of<EventData>(context, listen: false)
+                                  .lat,
+                              Provider.of<EventData>(context, listen: false)
+                                  .lng);
+                        },
                       ),
-                      onPressed: () {
-                        getMyLocation();
-                        goToMyLocation(
-                            Provider.of<EventData>(context, listen: false).lat,
-                            Provider.of<EventData>(context, listen: false).lng);
-                      },
-                    )),
+                    ),
                   ),
                 ),
               ),

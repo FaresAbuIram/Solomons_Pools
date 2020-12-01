@@ -59,8 +59,27 @@ class EventItem extends StatelessWidget {
                   top: 10,
                 ),
                 child: Text(
+                  'Event Place : ${event.place}',
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                  bottom: 8,
+                  top: 10,
+                ),
+                child: Text(
                   'Event date : ${event.eventTime}',
-                  style: TextStyle(fontSize: 17),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -73,7 +92,10 @@ class EventItem extends StatelessWidget {
                 ),
                 child: Text(
                   'Event Time : ${event.eventDate}',
-                  style: TextStyle(fontSize: 17),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),

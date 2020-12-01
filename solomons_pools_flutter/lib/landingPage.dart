@@ -23,7 +23,7 @@ class LandingPage extends StatelessWidget {
                   fontFamily: ArabicFonts.Tajawal,
                   package: 'google_fonts_arabic',
                   color: mainColor,
-                  fontSize: MediaQuery.of(context).size.height * 0.037,
+                  fontSize: MediaQuery.of(context).size.height * 0.045,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -38,7 +38,7 @@ class LandingPage extends StatelessWidget {
                 fontFamily: ArabicFonts.Tajawal,
                 package: 'google_fonts_arabic',
                 fontWeight: FontWeight.w600,
-                fontSize: MediaQuery.of(context).size.height * 0.025,
+                fontSize: MediaQuery.of(context).size.height * 0.027,
               ),
             ),
           ),
@@ -46,7 +46,7 @@ class LandingPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 20),
             width: MediaQuery.of(context).size.width * .6,
             child: MaterialButton(
-              elevation: 12,
+              elevation: 4,
               textColor: Colors.white,
               minWidth: 250.0,
               height: 60,
@@ -80,9 +80,12 @@ class LandingPage extends StatelessWidget {
               child: Container(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  child: SvgPicture.asset(
-                    "assets/images/m1.svg",
-                    height: MediaQuery.of(context).size.height * 0.40,
+                  child: Image.asset(
+                    "assets/images/m2.jpg",
+                    fit: BoxFit.cover,
+                    height: double.infinity,
+                    width: double.infinity,
+                    alignment: Alignment.center,
                   ),
                 ),
               ),
