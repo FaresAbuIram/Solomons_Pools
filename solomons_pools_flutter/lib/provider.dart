@@ -43,7 +43,7 @@ class EventData extends ChangeNotifier {
               title: element.eventName,
             ),
             icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueRose,
+              BitmapDescriptor.hueBlue,
             ),
             onTap: () {
               showBarModalBottomSheet(
