@@ -16,11 +16,13 @@ class EventItem extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
                 child: Image.network(
                   '${event.eventPicture}',
-                  fit: BoxFit.fitWidth,
+                  height: 165,
+                  fit: BoxFit.fill,
                 ),
                 width: MediaQuery.of(context).size.width,
                 //height: 150,
@@ -36,6 +38,7 @@ class EventItem extends StatelessWidget {
                     package: 'google_fonts_arabic',
                     color: Colors.blueGrey[800],
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(
@@ -48,7 +51,6 @@ class EventItem extends StatelessWidget {
                 child: Text(
                   '${event.descriptionEvent}',
                   style: TextStyle(fontSize: 17),
-                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(
@@ -64,7 +66,6 @@ class EventItem extends StatelessWidget {
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(
@@ -75,12 +76,11 @@ class EventItem extends StatelessWidget {
                   top: 10,
                 ),
                 child: Text(
-                  'Event date : ${event.eventTime}',
+                  'Event date : ${event.eventDate}',
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(
@@ -91,12 +91,11 @@ class EventItem extends StatelessWidget {
                   top: 10,
                 ),
                 child: Text(
-                  'Event Time : ${event.eventDate}',
+                  'Event Time : ${event.eventTime}',
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
             ],

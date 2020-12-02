@@ -21,7 +21,7 @@ class MapViewerState extends State<MapViewer> {
     super.initState();
   }
 
-  double zoomVal = 16.0;
+  double zoomVal = 16.5;
   MapType mapType = MapType.hybrid;
 
   @override
@@ -79,14 +79,15 @@ class MapViewerState extends State<MapViewer> {
                   alignment: Alignment.topLeft,
                   child: Card(
                     child: FittedBox(
-                        child: FlatButton(
-                      child: Icon(
-                        Icons.home,
+                      child: FlatButton(
+                        child: Icon(
+                          Icons.home,
+                        ),
+                        onPressed: () {
+                          goToSolmon();
+                        },
                       ),
-                      onPressed: () {
-                        goToSolmon();
-                      },
-                    )),
+                    ),
                   ),
                 ),
               ),
