@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'MapViewer.dart';
 import 'main.dart';

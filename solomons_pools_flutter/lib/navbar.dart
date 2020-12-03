@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:solomons_pools_flutter/contactUs.dart';
 import 'package:solomons_pools_flutter/landingPage.dart';
 import 'package:solomons_pools_flutter/provider.dart';
 import 'eventsList.dart';
@@ -8,7 +9,12 @@ import 'main.dart';
 import 'solomonPools.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final currentTab = [LandingPage(), SoolmonPools(), EvenstList()];
+  final currentTab = [
+    LandingPage(),
+    SoolmonPools(),
+    EvenstList(),
+    ContactUsPage()
+  ];
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<EventData>(context);
@@ -72,6 +78,17 @@ class BottomNavBar extends StatelessWidget {
             // ignore: deprecated_member_use
             title: Text(
               "الفعاليات",
+              style: TextStyle(
+                fontFamily: ArabicFonts.Tajawal,
+                package: 'google_fonts_arabic',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.connect_without_contact),
+            title: Text(
+              "تواصل معنا",
               style: TextStyle(
                 fontFamily: ArabicFonts.Tajawal,
                 package: 'google_fonts_arabic',
