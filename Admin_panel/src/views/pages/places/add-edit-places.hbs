@@ -1,0 +1,93 @@
+<div class="c-body">
+    <main class="c-main">
+        <div class="container-fluid">
+            <div class="core-container">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    {{!-- the text should be match the perpose Add/Edit --}}
+
+                                    <h4>{{#if id}}
+                                        Edit Place
+                                        {{else}}
+                                        Add new Place
+                                        {{/if}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel mb-5 card-accent-info">
+                            <div class="panel-body">
+                                <form method="POST" enctype="multipart/form-data"
+                                    action={{#if id}}"/places/update/{{id}}" {{else}}"/places/create" {{/if}}>
+
+                                    <div class="nav-tabs-boxed pseu-tabs">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="general" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div class="form-group">
+                                                                    <label>Place Name</label><span
+                                                                        class="required text-danger ml-1">*</span>
+                                                                    <input name="name" value={{#if id}} {{name}}
+                                                                        {{else}} "" {{/if}} type="text"
+                                                                        class="form-control" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-group">
+                                                                    <label class="col-form-label" for="logo">Place
+                                                                        Pictures</label><span
+                                                                        class="required text-danger ml-1">*</span>
+                                                                    <input id="event" type="file" name="place"
+                                                                        accept="image/png,image/jpg,image/jpeg"
+                                                                        {{#if id}} {{else}}required{{/if}} multiple>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-md-5">
+                                                                <div class="form-group">
+                                                                    <label>About the Place</label><span
+                                                                        class="required text-danger ml-1">*</span>
+                                                                    <textarea class="form-control" name="description"
+                                                                        required>{{#if id}} {{about}}  {{/if}}</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="latLng" name="latLng" value='{{#if id}}{"lat":{{lat}},"lng":{{lng}} }{{else}} none {{/if}}'>
+                                            <label for="">Location</label>
+                                            {{>map}}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="my-3 text-right">
+                                                            <button class="btn btn-primary" type="submit">{{#if id}}
+                                                                Edit {{else}} Create {{/if}}</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

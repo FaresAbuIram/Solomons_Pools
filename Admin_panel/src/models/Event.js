@@ -27,12 +27,12 @@ const EventSchema = new Schema({
         type: String,
         required: true,
     },
-    lat: {
-        type: Number,
+    placeName: {
+        type: String,
         required: true
     },
-    lng: {
-        type: Number,
+    placeId: {
+        type: Schema.ObjectId,
         required: true
     }
 });

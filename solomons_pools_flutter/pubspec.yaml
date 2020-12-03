@@ -35,6 +35,11 @@ dependencies:
   geolocator: ^6.1.4
   carousel_slider: ^2.3.1
   flip_card: ^0.4.4
+  flutter_animation_set: ^0.0.3
+  toast: ^0.1.5
+  url_launcher: ^5.0.3
+  get_it: ^1.0.3+2
+
   
 
 

@@ -59,12 +59,11 @@
                                                                     {{eventDate}}</p>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-5">
-                                                                <input type="hidden" id="latLng" name="latLng"
-                                                                    value='{"lat":{{lat}},"lng":{{lng}} }'>
-                                                                <label for="">Location</label>
-                                                                {{>browsemap}}
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Place of Event</label>
+                                                                <p type="text" class="form-control">
+                                                                    {{placeName}}</p>
                                                             </div>
                                                         </div>
 
@@ -72,12 +71,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>

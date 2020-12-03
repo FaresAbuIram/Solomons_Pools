@@ -36,7 +36,7 @@
                                                                 <div class="form-group">
                                                                     <label>Event Name</label><span
                                                                         class="required text-danger ml-1">*</span>
-                                                                    <input name="name" value={{#if id}} {{name}}
+                                                                    <input name="name" value={{#if id}} {{getObject  event "name"}}
                                                                         {{else}} "" {{/if}} type="text"
                                                                         class="form-control" required>
                                                                 </div>
@@ -55,9 +55,9 @@
                                                                 <div class="form-group">
                                                                     <label>Date</label>
                                                                     <input name="time" type="time" class="form-control"
-                                                                        value=" {{#if id}}{{ eventTime  }}{{else}} "" {{/if}}">
+                                                                        value=" {{#if id}}{{getObject  event "eventTime"}}{{else}} "" {{/if}}">
                                                                     <input name="date" type="date" class="form-control"
-                                                                        value=" {{#if id}}{{ eventDatwe  }}{{else}} "" {{/if}}">
+                                                                        value=" {{#if id}}{{getObject  event "eventDate"}}{{else}} "" {{/if}}">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-5">
@@ -65,16 +65,26 @@
                                                                     <label>Event Description</label><span
                                                                         class="required text-danger ml-1">*</span>
                                                                     <textarea class="form-control" name="description"
-                                                                        required>{{#if id}} {{description}}  {{/if}}</textarea>
+                                                                        required>{{#if id}} {{getObject event "description"}}  {{/if}}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-group">
+                                                                    <label>Event Place</label>
+                                                                    <div class="uk-form-controls">
+                                                                        <select  class="form-control form-control-lg" name="select">
+                                                                            {{#each allPlaces}}
+                                                                            <option  value="{{getObject  this "_id"}}">{{getObject  this "name"}}</option>
+                                                                            {{/each}}
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input type="hidden" id="latLng" name="latLng" value='{{#if id}}{"lat":{{lat}},"lng":{{lng}} }{{else}} none {{/if}}'>
-                                            <label for="">Location</label>
-                                            {{>map}}
+
                                         </div>
                                         <div class="row">
                                             <div class="col-md-10">

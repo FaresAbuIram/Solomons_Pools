@@ -1,3 +1,5 @@
+import 'package:mongo_dart/mongo_dart.dart';
+
 class Event {
   //Creator class for the creators of this app
   String eventName;
@@ -5,18 +7,19 @@ class Event {
   String descriptionEvent;
   String eventTime;
   String eventDate;
-  double lat, lng;
+  String place;
+  ObjectId objectId;
   Event(
       {this.eventName,
       this.descriptionEvent,
       this.eventPicture,
       this.eventTime,
       this.eventDate,
-      this.lat,
-      this.lng});
+      this.place,
+      this.objectId});
 
   @override
   String toString() {
-    return '{ ${this.eventName}, ${this.descriptionEvent}, ${this.eventDate} }';
+    return '{ ${this.eventName}, ${this.place}, ${this.descriptionEvent}, ${this.eventDate} }';
   }
 }

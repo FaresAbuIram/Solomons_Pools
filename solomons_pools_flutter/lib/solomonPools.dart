@@ -32,7 +32,7 @@ class SoolmonPools extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 45),
+                padding: const EdgeInsets.all(8),
                 child: Text(
                   "برك السلطان سليمان القانوني هي ثلاث برك ماء، انشأهم السلطان العثماني سليمان القانوني في قرية ارطاس جنوب مدينة بيت لحم في سنة 943هـ، وتتسع البرك لحوالي 2.4 مليون متر مكعب من المياه. ويوجد بالمنطقة المحاطة بهم ثلاثة أعين ماء تصب بهذه البرك، وتعتبر مياه البرك في السابق من أهم مصادر المياه لمدينتي بيت لحم والقدس",
                   textAlign: TextAlign.right,
@@ -40,7 +40,7 @@ class SoolmonPools extends StatelessWidget {
                     fontFamily: ArabicFonts.Tajawal,
                     package: 'google_fonts_arabic',
                     fontWeight: FontWeight.w600,
-                    fontSize: MediaQuery.of(context).size.height * 0.025,
+                    fontSize: MediaQuery.of(context).size.height * 0.027,
                   ),
                 ),
               ),

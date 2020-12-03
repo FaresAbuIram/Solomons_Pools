@@ -1,0 +1,170 @@
+<div class="c-body">
+    <main class="c-main">
+        <div class="container-fluid">
+            <div class="core-container">
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-4">
+                                    <h2>Places</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="d-flex flex-wrap">
+                                    <div>
+                                        <a href="/places/add-edit-places/0"
+                                            class="btn btn-block btn-success browse-button" role="button"
+                                            aria-pressed="true">
+                                            <span>Add new Place</span>
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a id="openDeleteModalButton" class="btn btn-block btn-danger browse-button"
+                                            aria-pressed="true">
+                                            <span>Delete</span>
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel mb-5">
+                            <div class="panel-body">
+                                <form action="/places" method="GET" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Search</label>
+                                                <input class="form-control" id="search" name="search" type="text"
+                                                    placeholder="Place name..." value="{{browse.searchText}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 align-self-end">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary browse-button">
+                                                    <span>Search</span>
+                                                    <i class="fas fa-arrow-circle-right"></i>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="/places/delete" method="POST" id="deleteForm">
+                                            <table class="coreuitable table table-responsive-sm table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <input type="checkbox" name="" id="checkall">
+                                                        </th>
+                                                        <th>Place Name</th>
+                                                        <th class="text-center">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each places}}
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" name="deleteIds[]"
+                                                                value="{{this.opjectId}}" class="table-checkbox">
+                                                        </td>
+                                                        <td>{{this.name}}</td>
+                                                        <td>
+                                                            <div
+                                                                class="d-flex flex-wrap text-center justify-content-center">
+                                                                <a href="/places/browse/{{this.opjectId}}"
+                                                                    class="btn mb-1 py-1 px-2 mr-2 btn-warning browse-button mr-1"
+                                                                    aria-pressed="true">
+                                                                    <span>Browse</span>
+                                                                    <i class="fas fa-eye"></i>
+                                                                </a>
+                                                                <a class="btn mb-1 py-1 px-2 mr-2 btn-info browse-button mr-1"
+                                                                    aria-pressed="true"
+                                                                    href="/places/add-edit-places/{{this.opjectId}}">
+                                                                    <span>Edit</span>
+                                                                    <i class="fas fa-edit"></i>
+                                                                </a>
+                                                                {{!-- This will open an modal --}}
+                                                                <button type="button" onclick="openDeleteModal(this)"
+                                                                    data-id='{{this.opjectId}}'
+                                                                    class="btn mb-1 py-1 px-2 btn-danger browse-button mr-1"
+                                                                    aria-pressed="true" data-toggle="modal"
+                                                                    data-target="#confirmDelete">
+                                                                    <span>Delete</span>
+                                                                    <i class="fas fa-trash"></i>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <nav aria-label="Page navigation text-center">
+                                                        <ul class="pagination d-flex justify-content-center">
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="user?page={{prevPage}}" <span
+                                                                    aria-hidden="true">«</span>
+                                                                    <span class="sr-only">Previous</span>
+                                                                </a>
+                                                            </li>
+                                                            {{#repeat browse.pagesNumber }}
+                                                            {{#if (isEqual browse.activePage @index)}}
+                                                            <li class="page-item active">
+                                                                <a class="page-link"
+                                                                    href="/places?page={{inc @index}}">
+                                                                    {{inc @index}}</a>
+                                                            </li>
+                                                            {{else}}
+                                                            <li class="page-item ">
+                                                                <a class="page-link"
+                                                                    href="/places?page={{inc @index}}&&search={{browse.searchText}}">
+                                                                    {{inc @index}}</a>
+                                                            </li>
+                                                            {{/if}}
+                                                            {{/repeat}}
+                                                            <li class="page-item">
+                                                                <a class="page-link"
+                                                                    href="/places?page={{ browse.nextPage }}&&search={{browse.searchText}}"
+                                                                    aria-label="Next">
+                                                                    <span aria-hidden="true">»</span>
+                                                                    <span class="sr-only">Next</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="mb-4 text-center">
+                                                        Showing {{browse.limit}} items from {{browse.totalElements}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{{>deletemodal}}
