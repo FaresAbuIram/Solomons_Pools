@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -127,10 +128,18 @@ class EventData extends ChangeNotifier {
                             Container(
                               //height: MediaQuery.of(context).size.height * 0.33,
                               child: Container(
-                                child: Image.network(
-                                  '${element.placePictures[0]}',
-                                  height: 200,
-                                  fit: BoxFit.fill,
+                                child: Swiper(
+                                  layout: SwiperLayout.TINDER,
+                                  itemWidth: MediaQuery.of(context).size.width,
+                                  itemHeight: 300.0,
+                                  itemBuilder: (context, index) {
+                                    return Image.network(
+                                      element.placePictures[index],
+                                      fit: BoxFit.fill,
+                                    );
+                                  },
+                                  itemCount: element.placePictures.length,
+                                  loop: true,
                                 ),
                               ),
                               width: MediaQuery.of(context).size.width,

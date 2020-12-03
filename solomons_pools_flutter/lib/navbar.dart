@@ -47,6 +47,7 @@ class BottomNavBar extends StatelessWidget {
             icon: Icon(
               Icons.home,
             ),
+            // ignore: deprecated_member_use
             title: Text(
               "الرئيسية",
               style: TextStyle(
@@ -60,6 +61,7 @@ class BottomNavBar extends StatelessWidget {
             icon: Icon(
               Icons.directions_boat,
             ),
+            // ignore: deprecated_member_use
             title: Text(
               "برك سليمان",
               style: TextStyle(
@@ -73,6 +75,7 @@ class BottomNavBar extends StatelessWidget {
             icon: Icon(
               Icons.event,
             ),
+            // ignore: deprecated_member_use
             title: Text(
               "الفعاليات",
               style: TextStyle(
