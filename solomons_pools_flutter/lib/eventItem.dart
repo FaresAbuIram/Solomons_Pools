@@ -50,7 +50,10 @@ class EventItem extends StatelessWidget {
                 ),
                 child: Text(
                   '${event.descriptionEvent}',
-                  style: TextStyle(fontSize: 17),
+                  style: TextStyle(
+                    fontSize: 17,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(
@@ -66,6 +69,7 @@ class EventItem extends StatelessWidget {
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(
@@ -81,6 +85,7 @@ class EventItem extends StatelessWidget {
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(
@@ -96,6 +101,7 @@ class EventItem extends StatelessWidget {
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],

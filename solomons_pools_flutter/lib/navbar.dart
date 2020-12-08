@@ -11,8 +11,8 @@ import 'solomonPools.dart';
 class BottomNavBar extends StatelessWidget {
   final currentTab = [
     LandingPage(),
-    SoolmonPools(),
     EvenstList(),
+    SoolmonPools(),
     ContactUsPage()
   ];
   @override
@@ -59,20 +59,6 @@ class BottomNavBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.directions_boat,
-            ),
-            // ignore: deprecated_member_use
-            title: Text(
-              "برك سليمان",
-              style: TextStyle(
-                fontFamily: ArabicFonts.Tajawal,
-                package: 'google_fonts_arabic',
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.event,
             ),
             // ignore: deprecated_member_use
@@ -86,7 +72,21 @@ class BottomNavBar extends StatelessWidget {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.connect_without_contact),
+            icon: Icon(
+              Icons.directions_boat,
+            ),
+            // ignore: deprecated_member_use
+            title: Text(
+              "برك سليمان",
+              style: TextStyle(
+                fontFamily: ArabicFonts.Tajawal,
+                package: 'google_fonts_arabic',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.contacts),
             title: Text(
               "تواصل معنا",
               style: TextStyle(
