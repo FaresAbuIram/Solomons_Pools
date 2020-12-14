@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    //SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+
     return ChangeNotifierProvider(
       create: (context) => EventData(),
       child: MaterialApp(
