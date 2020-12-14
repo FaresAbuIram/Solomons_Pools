@@ -1,5 +1,5 @@
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:solomons_pools_flutter/event.dart';
+import 'package:solomons_pools_flutter/classes/event.dart';
 
 class Place {
   //Creator class for the creators of this app

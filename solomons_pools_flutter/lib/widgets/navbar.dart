@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:solomons_pools_flutter/contactUs.dart';
-import 'package:solomons_pools_flutter/landingPage.dart';
-import 'package:solomons_pools_flutter/provider.dart';
-import 'eventsList.dart';
-import 'main.dart';
-import 'solomonPools.dart';
+import 'package:solomons_pools_flutter/main.dart';
+import 'package:solomons_pools_flutter/models/provider.dart';
+import 'package:solomons_pools_flutter/screens/contactUs.dart';
+import 'package:solomons_pools_flutter/screens/eventsList.dart';
+import 'package:solomons_pools_flutter/screens/landingPage.dart';
+import 'package:solomons_pools_flutter/screens/solomonPools.dart';
 
 class BottomNavBar extends StatelessWidget {
   final currentTab = [

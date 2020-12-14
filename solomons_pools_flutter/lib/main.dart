@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solomons_pools_flutter/ServiceLocator.dart';
-import 'package:solomons_pools_flutter/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:solomons_pools_flutter/models/provider.dart';
+import 'package:solomons_pools_flutter/screens/loading.dart';
 
-import 'loading.dart';
+import 'models/ServiceLocator.dart';
 
 void main() {
   setupLocator();

@@ -2,43 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-import 'package:solomons_pools_flutter/ServiceLocator.dart';
+import 'package:solomons_pools_flutter/classes/CommunicatingManager.dart';
 import 'package:solomons_pools_flutter/main.dart';
-
-import 'CommunicatingManager.dart';
+import 'package:solomons_pools_flutter/models/ServiceLocator.dart';
+import 'package:solomons_pools_flutter/widgets/contactus_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 CallsAndMessagesService _service = locator<CallsAndMessagesService>();
-
-class MyItem extends StatelessWidget {
-  final Icon i;
-  final String str;
-  MyItem(this.i, this.str);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CircleAvatar(
-          backgroundColor: Colors.blueGrey[100],
-          radius: 25,
-          child: Icon(this.i.icon, color: Colors.black, size: 30),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-          child: Text(
-            this.str,
-            style: TextStyle(
-              fontFamily: ArabicFonts.Tajawal,
-              package: 'google_fonts_arabic',
-              fontSize: MediaQuery.of(context).size.height * 0.025,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class ContactUsPage extends StatelessWidget {
   final h2Size = 0.034;

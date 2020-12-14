@@ -2,14 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:solomons_pools_flutter/place.dart';
-import 'dialog.dart';
-import 'event.dart';
+import 'package:solomons_pools_flutter/classes/event.dart';
+import 'package:solomons_pools_flutter/classes/place.dart';
+
 import 'dart:ui';
+
+import 'package:solomons_pools_flutter/widgets/dialog.dart';
 
 class EventData extends ChangeNotifier {
   int _currentIndex = 0;
@@ -139,7 +142,7 @@ class EventData extends ChangeNotifier {
                                     );
                                   },
                                   itemCount: element.placePictures.length,
-                                  loop: true,
+                                  loop: false,
                                 ),
                               ),
                               width: MediaQuery.of(context).size.width,

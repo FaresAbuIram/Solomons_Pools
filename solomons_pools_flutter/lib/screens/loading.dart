@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
 import 'package:provider/provider.dart';
-import 'package:solomons_pools_flutter/place.dart';
-import 'package:solomons_pools_flutter/provider.dart';
+import 'package:solomons_pools_flutter/classes/event.dart';
+import 'package:solomons_pools_flutter/classes/place.dart';
+import 'package:solomons_pools_flutter/models/provider.dart';
 import 'package:flutter_animation_set/widget/transition_animations.dart';
-
-import 'event.dart';
-import 'navbar.dart';
+import 'package:solomons_pools_flutter/widgets/navbar.dart';
 
 class LoadingPage extends StatefulWidget {
   @override

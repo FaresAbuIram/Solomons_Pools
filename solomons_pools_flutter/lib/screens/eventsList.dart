@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
-import 'package:solomons_pools_flutter/provider.dart';
-import 'eventItem.dart';
+import 'package:solomons_pools_flutter/models/provider.dart';
+import 'package:solomons_pools_flutter/widgets/eventItem.dart';
 
 class EvenstList extends StatelessWidget {
   @override

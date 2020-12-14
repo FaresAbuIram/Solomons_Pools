@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-import 'MapViewer.dart';
-import 'main.dart';
+import 'package:solomons_pools_flutter/main.dart';
+import 'package:solomons_pools_flutter/screens/MapViewer.dart';
 
 class LandingPage extends StatelessWidget {
   // This widget is the root of your application.

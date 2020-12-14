@@ -4,7 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:solomons_pools_flutter/provider.dart';
+import 'package:solomons_pools_flutter/models/provider.dart';
 
 class MapViewer extends StatefulWidget {
   @override

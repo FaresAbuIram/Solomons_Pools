@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-
-import 'event.dart';
+import 'package:solomons_pools_flutter/classes/event.dart';
 
 class EventItem extends StatelessWidget {
   final Event event;

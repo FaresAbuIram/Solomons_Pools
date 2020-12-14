@@ -2,8 +2,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts_arabic/fonts.dart';
-import 'package:solomons_pools_flutter/sliderImage.dart';
-import 'main.dart';
+
+import 'package:solomons_pools_flutter/main.dart';
+import 'package:solomons_pools_flutter/widgets/sliderImage.dart';
 
 class SoolmonPools extends StatelessWidget {
   @override

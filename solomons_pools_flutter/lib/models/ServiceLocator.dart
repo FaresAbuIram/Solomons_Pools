@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'CommunicatingManager.dart';
+import 'package:solomons_pools_flutter/classes/CommunicatingManager.dart';
 
 GetIt locator = GetIt();
 
