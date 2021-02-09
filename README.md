@@ -39,7 +39,7 @@ Compatible with all of these web browsers:
 - Microsoft Edge
 
 ## Authors
-- [Faris Abuarram](mailto:aburamf@gmail.com)- software engineer and web developer 
+- [Fares AbuIram](mailto:aburamf@gmail.com)- software engineer and web developer 
 - [Amro Amro](mailto:amro.amro1999@gmail.com)- software engineer and web developer
 - [Wisam Alhroub](mailto:wisalhroub@gmail.com)- software engineer and web developer
 
