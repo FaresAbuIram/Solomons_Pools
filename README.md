@@ -29,7 +29,7 @@ The Admin Panel implemented and designed by NodeJs and Handlebars used to do CRU
  Flutter and NodeJS
  
 ## Versioning
-This is the first version
+This is the last version
 
 ## Enviroments
 Compatible with all of these web browsers:
